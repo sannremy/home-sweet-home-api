@@ -1,0 +1,13 @@
+{
+  "name": "home-sweet-home",
+  "version": "1.0.0",
+  "description": "Dashboard of smart home devices",
+  "author": "Sann-Remy Chea <srchea@srchea.com>",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
