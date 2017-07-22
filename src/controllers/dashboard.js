@@ -17,11 +17,27 @@ router.get('/', (req, res) => {
     }
   };
 
-  var soapReq = http.request(options, function(soapRes) {
+  let soapReq = http.request(options, function(soapRes) {
     soapRes.setEncoding('utf8');
     if(soapRes.statusCode === 200) {
+      let data = '';
       soapRes.on('data', function (chunk) {
-        console.log('BODY: ' + chunk);
+        data += chunk;
+      });
+
+      soapRes.on('end', () => {
+        let dataString = data.substring(
+          data.indexOf('<NewAttachDevice>') + '<NewAttachDevice>'.length,
+          data.indexOf('</NewAttachDevice>')
+        );
+
+        let dataSplit = dataString.split('@');
+        let numberOfDevices = dataSplit[0];
+        console.log('Number of devices: ' + numberOfDevices);
+        for(let deviceString of dataSplit) {
+          let deviceSplit = deviceString.split(';');
+          console.log(deviceSplit);
+        }
       });
     }
   });
@@ -30,9 +46,6 @@ router.get('/', (req, res) => {
     console.log('problem with request: ' + e.message);
   });
 
-  // write data to request body
-  soapReq.write('data\n');
-  soapReq.write('data\n');
   soapReq.end();
 
   res.send('Hello World!');
