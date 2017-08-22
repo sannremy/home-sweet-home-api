@@ -106,39 +106,35 @@ class NetgearRouter {
     return data.indexOf('<ResponseCode>000</ResponseCode>') > -1;
   }
 
-  login(sessionId, username, password) {
+  async login(sessionId, username, password) {
     sessionId = sessionId || this.sessionId;
-    return this
-      .requestPromise('login', {
-        sessionId: sessionId,
-        username: username,
-        password: password
-      }).then((data) => {
-        return this.isValidResponse(data);
-      });
+    let data = await this.requestPromise('login', {
+      sessionId: sessionId,
+      username: username,
+      password: password
+    });
+
+    return this.isValidResponse(data);
   }
 
-  getAttachedDevices(sessionId) {
+  async getAttachedDevices(sessionId) {
     sessionId = sessionId || this.sessionId;
 
-    return this
-      .requestPromise('getAttachedDevices', { sessionId: sessionId })
-      .then((data) => {
-        let dataString = data.substring(
-          data.indexOf('<NewAttachDevice>') + '<NewAttachDevice>'.length,
-          data.indexOf('</NewAttachDevice>')
-        );
+    let data = await this.requestPromise('getAttachedDevices', { sessionId: sessionId })
+    let dataString = data.substring(
+      data.indexOf('<NewAttachDevice>') + '<NewAttachDevice>'.length,
+      data.indexOf('</NewAttachDevice>')
+    );
 
-        let dataSplit = dataString.split('@');
-        let numberOfDevices = dataSplit[0];
-        let attachDevices = [];
-        for(let deviceString of dataSplit) {
-          let deviceSplit = deviceString.split(';');
-          attachDevices.push(deviceSplit);
-        }
+    let dataSplit = dataString.split('@');
+    let numberOfDevices = dataSplit[0];
+    let attachDevices = [];
+    for(let deviceString of dataSplit) {
+      let deviceSplit = deviceString.split(';');
+      attachDevices.push(deviceSplit);
+    }
 
-        return attachDevices;
-      });
+    return attachDevices;
   }
 }
 

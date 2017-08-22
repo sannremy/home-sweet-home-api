@@ -4,25 +4,26 @@ const http = require('http');
 const express = require('express');
 const router = express.Router();
 
+const asyncMiddleware = require('../libs/asyncMiddleware');
 const NetgearRouter = require('../libs/netgear-router');
 
-router.get('/', (req, res) => {
+router.get('/', asyncMiddleware(async (req, res, next) => {
 
   let netgearRouter = new NetgearRouter();
-  netgearRouter
-    .login(null, process.env.NETGEAR_USERNAME, process.env.NETGEAR_PASSWORD)
-    .then((isLogged) => {
-      if (isLogged) {
-        return netgearRouter.getAttachedDevices(null);
-      } else {
-        return null;
-      }
-    })
-    .then((attachedDevices) => {
-      console.log(attachedDevices);
-    });
+  let isLogged = await netgearRouter.login(
+    null,
+    process.env.NETGEAR_USERNAME,
+    process.env.NETGEAR_PASSWORD
+  );
+
+  let attachedDevices = null;
+  if (isLogged) {
+    attachedDevices = await netgearRouter.getAttachedDevices(null);
+  }
+
+  console.log(attachedDevices);
 
   res.send('Hello World!');
-});
+}));
 
 module.exports = router;
