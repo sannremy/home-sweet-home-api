@@ -5,10 +5,9 @@
   "author": "Sann-Remy Chea <srchea@srchea.com>",
   "main": "src/server.js",
   "scripts": {
-    "start": "node ./src/server.js"
+    "start": "node ./src/app.js"
   },
   "dependencies": {
-    "express": "^4.15.3",
-    "nightmare": "^2.10.0"
+    "express": "^4.15.3"
   }
 }
