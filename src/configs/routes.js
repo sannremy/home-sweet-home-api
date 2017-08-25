@@ -1,5 +1,6 @@
 'use strict';
 
 module.exports = {
-  '/': '/dashboard'
+  '/': '/dashboard',
+  '/wifi': '/wifi'
 };
