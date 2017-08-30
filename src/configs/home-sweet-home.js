@@ -2,15 +2,18 @@
 
 module.exports = {
   'netgear': {
-    'username': process.env.NETGEAR_USERNAME,
-    'password': process.env.NETGEAR_PASSWORD,
+    'username': process.env.NETGEAR_USERNAME || 'username',
+    'password': process.env.NETGEAR_PASSWORD || 'password',
   },
   'yahooWeather': {
-    'key': process.env.YAHOO_WEATHER_API_KEY,
-    'secret': process.env.YAHOO_WEATHER_API_SECRET,
+    'key': process.env.YAHOO_WEATHER_API_KEY || '',
+    'secret': process.env.YAHOO_WEATHER_API_SECRET || '',
+
+    'location': process.env.YAHOO_WEATHER_LOCATION || 'Paris, FR',
+    'temperature_unit': process.env.YAHOO_WEATHER_TEMPERATURE_UNIT || 'celsius',
   },
   'googleMaps': {
-    'key': process.env.GOOGLE_MAPS_API_KEY,
-    'secret': process.env.GOOGLE_MAPS_API_SECRET,
+    'key': process.env.GOOGLE_MAPS_API_KEY || '',
+    'secret': process.env.GOOGLE_MAPS_API_SECRET || '',
   },
 };

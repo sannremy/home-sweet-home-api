@@ -1,8 +1,13 @@
 'use strict';
 
+const YahooWeather = require('../libs/yahoo-weather');
+
 class DashboardController {
   static async indexHandler(req, res, next) {
-    res.render('pages/dashboard/index');
+    let weather = await YahooWeather.getWeather();
+    res.render('pages/dashboard/index', {
+      weather: weather
+    });
   }
 }
 

@@ -9,13 +9,11 @@ mixin Block
 block content
   .Block.Block--weather
     .Weather
-      .Weather-temperature 21.4&deg; (outdoor)
+      .Weather-temperature #{weather.temperature}&deg;
       .Weather-forecast
         ul
-          li Forecast D+1
-          li Forecast D+2
-          li Forecast D+3
-          li Forecast D+4
+          each day in weather.forecast
+            li #{day.date}, #{day.low}, #{day.high}, #{day.text}
       .Weather-rooms
         ul
           li Room A 21.4&deg; - 850ppm
@@ -28,8 +26,8 @@ block content
       .Datetime-date 01/01/2017
       .Datetime-sun
         ul
-          li 6:30
-          li 19:38
+          li #{weather.sunrise}
+          li #{weather.sunset}
   .Block.Block--traffic
     .Traffic traffic
     .Traffic-list
