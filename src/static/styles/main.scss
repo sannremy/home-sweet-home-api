@@ -1,0 +1,48 @@
+@import 'reset';
+
+html, body {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+}
+
+.Site {
+  width: 100%;
+  height: 100%;
+  background: #e4e4e4;
+  padding: 10px;
+  box-sizing: border-box;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.Block {
+  background: #fff;
+  padding: 32px;
+}
+
+.Block--weather {
+  grid-column: 1/3;
+  grid-row: 1;
+}
+
+.Weather-temperature {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.Block--wifi {
+  grid-column: 3;
+  grid-row: 1/3;
+}
+
+.Block--datetime {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.Block--traffic {
+  grid-column: 2;
+  grid-row: 2;
+}

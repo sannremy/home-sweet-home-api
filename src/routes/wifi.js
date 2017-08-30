@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const asyncMiddleware = require('../libs/asyncMiddleware');
+const asyncController = require('../libs/async-controller');
 
 const WifiController = require('../controllers/wifi');
 
-router.get('/', asyncMiddleware(WifiController.onlineDevicesHandler));
+router.get('/', asyncController(WifiController.onlineDevicesHandler));
 
 module.exports = router;

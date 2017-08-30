@@ -1,5 +1,6 @@
 'use strict';
 
+const config = require('../configs/home-sweet-home');
 const NetgearRouter = require('../libs/netgear-router');
 
 class WifiController {
@@ -7,8 +8,8 @@ class WifiController {
     let netgearRouter = new NetgearRouter();
     let isLogged = await netgearRouter.login(
       null,
-      process.env.NETGEAR_USERNAME,
-      process.env.NETGEAR_PASSWORD
+      config.netgear.username,
+      config.netgear.password
     );
 
     let attachedDevices = null;
