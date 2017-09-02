@@ -20,10 +20,13 @@ block content
           li Room B 21.4&deg; - 850ppm
   .Block.Block--wifi
     .Block-title Online devices
+    .Water
+      ul
+        li #{waterLevel.date.format('LLLL')}, #{waterLevel.level}
   .Block.Block--datetime
     .Datetime
-      .Datetime-time 12:34
-      .Datetime-date 01/01/2017
+      .Datetime-time #{date.format('LT')}
+      .Datetime-date #{date.format('LL')}
       .Datetime-sun
         ul
           li #{weather.sunrise}
@@ -32,5 +35,5 @@ block content
     .Traffic traffic
     .Traffic-list
       ul
-        li Destination A: 9 mins
-        li Destination B: 20 mins
+        each duration in trafficDurations
+          li #{duration.label}: #{duration.duration.humanize()}

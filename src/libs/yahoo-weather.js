@@ -1,5 +1,7 @@
 const config = require('../configs/home-sweet-home');
+
 const YQL = require('yql');
+const moment = require('moment');
 
 class YahooWeather {
   static getWeather() {
@@ -15,8 +17,11 @@ class YahooWeather {
 
         let temperature = data.query.results.channel.item.condition.temp;
 
-        let sunrise = data.query.results.channel.astronomy.sunrise;
-        let sunset = data.query.results.channel.astronomy.sunset;
+        let sunrise = moment(data.query.results.channel.astronomy.sunrise);
+        sunrise.locale(config.locale);
+
+        let sunset = moment(data.query.results.channel.astronomy.sunset);
+        sunset.locale(config.locale);
 
         return resolve({
           forecast: forecast,
