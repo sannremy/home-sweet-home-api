@@ -17,10 +17,10 @@ class YahooWeather {
 
         let temperature = data.query.results.channel.item.condition.temp;
 
-        let sunrise = moment(data.query.results.channel.astronomy.sunrise);
+        let sunrise = moment(data.query.results.channel.astronomy.sunrise, 'h:mm a');
         sunrise.locale(config.locale);
 
-        let sunset = moment(data.query.results.channel.astronomy.sunset);
+        let sunset = moment(data.query.results.channel.astronomy.sunset, 'h:mm a');
         sunset.locale(config.locale);
 
         return resolve({

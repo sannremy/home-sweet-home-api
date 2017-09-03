@@ -22,15 +22,15 @@ block content
     .Block-title Online devices
     .Water
       ul
-        li #{waterLevel.date.format('LLLL')}, #{waterLevel.level}
+        li #{waterLevel.date.format('LT')}: #{waterLevel.level}m
   .Block.Block--datetime
     .Datetime
       .Datetime-time #{date.format('LT')}
       .Datetime-date #{date.format('LL')}
       .Datetime-sun
         ul
-          li #{weather.sunrise}
-          li #{weather.sunset}
+          li Sunrise: #{weather.sunrise.format('LT')}
+          li Sunset: #{weather.sunset.format('LT')}
   .Block.Block--traffic
     .Traffic traffic
     .Traffic-list

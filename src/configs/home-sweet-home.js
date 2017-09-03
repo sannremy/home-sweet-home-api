@@ -15,18 +15,7 @@ module.exports = {
   },
   'googleMaps': {
     'key': process.env.GOOGLE_MAPS_API_KEY || '',
-    'directions': [
-      {
-        label: 'Bordeaux',
-        origin: 'Paris, France',
-        destination: 'Bordeaux, France',
-      },
-      {
-        label: 'Lyon',
-        origin: 'Paris, France',
-        destination: 'Lyon, France',
-      },
-    ]
+    'directions': JSON.parse(process.env.GOOGLE_MAPS_DIRECTIONS)
   },
   'vigicrue': {
     url: process.env.VIGICRUE_URL || ''

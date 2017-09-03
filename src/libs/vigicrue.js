@@ -15,7 +15,7 @@ class Vigicrue {
         });
         res.on('end', () => {
           const $ = cheerio.load(data);
-          let date = moment($('.liste tr:nth-child(2) td:nth-child(1)').text());
+          let date = moment($('.liste tr:nth-child(2) td:nth-child(1)').text(), 'DD/MM/YYYY HH:mm');
           date.locale(config.locale);
 
           let level = $('.liste tr:nth-child(2) td:nth-child(2)').text();
