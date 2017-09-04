@@ -7,6 +7,14 @@ mixin Block
 
 
 block content
+  .Block.Block--datetime
+    .Datetime
+      .Datetime-time #{date.format('LT')}
+      .Datetime-date #{date.format('LL')}
+      .Datetime-sun
+        ul
+          li Sunrise: #{weather.sunrise.format('LT')}
+          li Sunset: #{weather.sunset.format('LT')}
   .Block.Block--weather
     .Weather
       .Weather-temperature #{weather.temperature}&deg;
@@ -20,20 +28,17 @@ block content
           li Room B 21.4&deg; - 850ppm
   .Block.Block--wifi
     .Block-title Online devices
-    .Water
-      ul
-        li #{waterLevel.date.format('LT')}: #{waterLevel.level}m
-  .Block.Block--datetime
-    .Datetime
-      .Datetime-time #{date.format('LT')}
-      .Datetime-date #{date.format('LL')}
-      .Datetime-sun
-        ul
-          li Sunrise: #{weather.sunrise.format('LT')}
-          li Sunset: #{weather.sunset.format('LT')}
   .Block.Block--traffic
     .Traffic traffic
     .Traffic-list
       ul
         each duration in trafficDurations
           li #{duration.label}: #{duration.duration.humanize()}
+  .Block news
+  .Block water level
+    .Water
+      ul
+        li #{waterLevel.date.format('LT')}: #{waterLevel.level}m
+  .Block Wemo on/off
+  .Block bonjour
+  .Block bonjour
