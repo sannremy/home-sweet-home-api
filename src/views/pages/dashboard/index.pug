@@ -1,44 +1,43 @@
 extends ../../layouts/home-sweet-home
 
-mixin Block
-  .Block
-    .Block-title Online devices
-    .Block-content Salut
-
-
 block content
-  .Block.Block--datetime
+  +Block({
+    type: 'datetime'
+  })
     .Datetime
-      .Datetime-time #{date.format('LT')}
-      .Datetime-date #{date.format('LL')}
+      //- .Datetime-time #{date.format('LT')}
+      //- .Datetime-date #{date.format('LL')}
       .Datetime-sun
         ul
-          li Sunrise: #{weather.sunrise.format('LT')}
-          li Sunset: #{weather.sunset.format('LT')}
-  .Block.Block--weather
-    .Weather
-      .Weather-temperature #{weather.temperature}&deg;
-      .Weather-forecast
-        ul
-          each day in weather.forecast
-            li #{day.date}, #{day.low}, #{day.high}, #{day.text}
-      .Weather-rooms
-        ul
-          li Room A 21.4&deg; - 850ppm
-          li Room B 21.4&deg; - 850ppm
-  .Block.Block--wifi
+          //- li Sunrise: #{weather.sunrise.format('LT')}
+          //- li Sunset: #{weather.sunset.format('LT')}
+  +Block({
+    type: 'weather'
+  })
+    +Weather(weather)
+  +Block({
+    type: 'wifi'
+  })
     .Block-title Online devices
-  .Block.Block--traffic
+  +Block({
+    type: 'traffic'
+  })
     .Traffic traffic
     .Traffic-list
       ul
-        each duration in trafficDurations
+        //- each duration in trafficDurations
           li #{duration.label}: #{duration.duration.humanize()}
-  .Block news
-  .Block water level
+  +Block({
+    type: 'news'
+  }) news
+  +Block({
+    type: 'water'
+  })
     .Water
       ul
-        li #{waterLevel.date.format('LT')}: #{waterLevel.level}m
-  .Block Wemo on/off
-  .Block bonjour
-  .Block bonjour
+        //- li #{waterLevel.date.format('LT')}: #{waterLevel.level}m
+  +Block({
+    type: 'wemo'
+  }) Wemo on/off
+  +Block bonjour
+  +Block bonjour

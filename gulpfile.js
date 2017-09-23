@@ -9,13 +9,28 @@ var sassConfig = {
   }
 }
 
-gulp.task('build-css', () => {
+gulp.task('build:styles', () => {
   return gulp
     .src(sassConfig.inputDirectory)
     .pipe(sass(sassConfig.options).on('error', sass.logError))
     .pipe(gulp.dest(sassConfig.outputDirectory));
 });
 
-gulp.task('watch', function() {
-  gulp.watch('src/static/styles/**/*.scss', ['build-css']);
+var browserify = require('gulp-browserify');
+
+gulp.task('build:scripts', function() {
+    // Single entry point to browserify
+    gulp.src('src/static/scripts/main.js')
+      .pipe(browserify({
+        insertGlobals: true,
+        debug: process.env.NODE_ENV === 'development'
+      }))
+      .pipe(gulp.dest('dist/static/scripts'))
+});
+
+gulp.task('build', ['build:styles', 'build:scripts']);
+
+gulp.task('watch', ['build'], function() {
+  gulp.watch('src/static/styles/**/*.scss', ['build:styles']);
+  gulp.watch('src/static/scripts/**/*.js', ['build:scripts']);
 });

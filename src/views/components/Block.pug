@@ -1,0 +1,10 @@
+mixin Block(options)
+  -
+    if (!options) {
+      options = {
+        type: null
+      };
+    }
+
+  .Block(class= options.type ? 'Block--' + options.type : false)
+    block

@@ -13,10 +13,10 @@ class WemoSwitchInsight {
 
           let client = wemo.client(device);
           client.on('insightParams', function(state, power) {
-            console.log('%s’s power consumption: %s W',
+            console.log('%s’s power consumption: %s W (state: %s)',
               device.friendlyName,
-              state,
-              Math.round(power / 1000)
+              Math.round(power / 1000),
+              state
             );
 
             return resolve({

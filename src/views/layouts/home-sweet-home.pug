@@ -1,3 +1,6 @@
+include ../components/Block.pug
+include ../components/Weather.pug
+
 doctype
 html.no-js
   head
@@ -13,5 +16,4 @@ html.no-js
       block content
 
     block scripts
-      //-script(src='javascripts/plugins.js')
-      //-script(src='javascripts/script.js')
+      script(src='/static/scripts/main.js')
