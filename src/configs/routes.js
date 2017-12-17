@@ -2,6 +2,5 @@
 
 module.exports = {
   '/': '/dashboard',
-  '/wifi': '/wifi',
-  '/api': '/api'
+  '/service': '/service'
 };

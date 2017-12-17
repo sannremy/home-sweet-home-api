@@ -5,7 +5,9 @@
   "author": "Sann-Remy Chea <srchea@srchea.com>",
   "main": "src/server.js",
   "scripts": {
-    "start": "node ./src/app.js"
+    "start": "node ./src/app.js",
+    "build": "gulp build",
+    "watch": "gulp watch"
   },
   "dependencies": {
     "@google/maps": "^0.4.3",
@@ -19,5 +21,8 @@
     "pug": "^2.0.0-rc.3",
     "wemo-client": "^0.14.0",
     "yql": "^1.0.2"
+  },
+  "devDependencies": {
+    "gulp-nodemon": "^2.2.1"
   }
 }

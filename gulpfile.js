@@ -1,9 +1,10 @@
-var gulp = require('gulp'),
-sass = require('gulp-sass');
+const gulp = require('gulp'),
+      sass = require('gulp-sass'),
+      nodemon = require('gulp-nodemon');
 
 var sassConfig = {
-  inputDirectory: 'src/static/styles/main.scss',
-  outputDirectory: 'dist/static/styles',
+  inputDirectory: './src/static/styles/main.scss',
+  outputDirectory: './dist/static/styles',
   options: {
     outputStyle: 'expanded'
   }
@@ -20,7 +21,7 @@ var browserify = require('gulp-browserify');
 
 gulp.task('build:scripts', function() {
     // Single entry point to browserify
-    gulp.src('src/static/scripts/main.js')
+    gulp.src('./src/static/scripts/main.js')
       .pipe(browserify({
         insertGlobals: true,
         debug: process.env.NODE_ENV === 'development'
@@ -31,6 +32,12 @@ gulp.task('build:scripts', function() {
 gulp.task('build', ['build:styles', 'build:scripts']);
 
 gulp.task('watch', ['build'], function() {
-  gulp.watch('src/static/styles/**/*.scss', ['build:styles']);
-  gulp.watch('src/static/scripts/**/*.js', ['build:scripts']);
+  nodemon({
+    script: './src/app.js',
+    ext: 'js',
+    env: { 'NODE_ENV': 'development' }
+  });
+
+  gulp.watch('./src/static/styles/**/*.scss', ['build:styles']);
+  gulp.watch('./src/static/scripts/**/*.js', ['build:scripts']);
 });
