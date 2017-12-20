@@ -11,14 +11,17 @@
   },
   "dependencies": {
     "@google/maps": "^0.4.3",
+    "babel-preset-env": "^1.6.1",
     "cheerio": "^1.0.0-rc.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "express-react-views": "^0.10.4",
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
     "gulp-sass": "^3.1.0",
     "moment": "^2.18.1",
-    "pug": "^2.0.0-rc.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "wemo-client": "^0.14.0",
     "yql": "^1.0.2"
   },

@@ -12,6 +12,8 @@ for(let key in expressCfg) {
   app.set(key, expressCfg[key]);
 }
 
+app.engine('jsx', require('express-react-views').createEngine());
+
 app.use('/static', express.static(path.join(process.cwd(), 'dist', 'static')));
 
 const PORT = process.env.PORT || 8080;
