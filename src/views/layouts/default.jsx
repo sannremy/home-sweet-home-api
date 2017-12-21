@@ -3,10 +3,10 @@ var React = require('react');
 class DefaultLayout extends React.Component {
   render() {
     return (
-      <html class="no-js">
+      <html className="no-js">
         <head>
-            <meta charset="utf-8" />
-            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta charSet="utf-8" />
+            <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
             <title>{this.props.title}</title>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300:400,700" rel="stylesheet" />
@@ -14,7 +14,7 @@ class DefaultLayout extends React.Component {
         </head>
 
         <body>
-            <div class="Site">
+            <div className="Site">
               {this.props.children}
             </div>
             <script src="/static/scripts/main.js"></script>

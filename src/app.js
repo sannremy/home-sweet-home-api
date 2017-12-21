@@ -1,7 +1,8 @@
 'use strict';
 
-const path = require('path');
 require('dotenv').config();
+const path = require('path');
+const http = require('http');
 const express = require('express');
 const expressCfg = require('./configs/express');
 const routesCfg = require('./configs/routes');
@@ -25,3 +26,16 @@ for(let route in routesCfg) {
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
+
+const server = http.createServer(app);
+const io = require('socket.io')(server);
+server.listen(PORT);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});

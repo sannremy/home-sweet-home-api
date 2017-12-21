@@ -1,27 +1,17 @@
 ((global) => {
-  let getServiceByName = (serviceName) => {
-    let httpRequest = new XMLHttpRequest();
+  const io = require('socket.io-client')();
+  const socket = io.connect('http://127.0.0.1:8080');
 
-    if (!httpRequest) {
-      console.log('Giving up :( Cannot create an XMLHTTP instance');
-      return false;
-    }
-
-    httpRequest.onreadystatechange = () => {
-      if (httpRequest.readyState === XMLHttpRequest.DONE) {
-        if (httpRequest.status === 200) {
-          console.log(JSON.parse(httpRequest.responseText));
-        } else {
-          console.log('There was a problem with the request.');
-        }
-      }
-    };
-
-    httpRequest.open('GET', '/service/' + serviceName);
-    httpRequest.send();
+  let listenService = (serviceName) => {
+    socket.on(serviceName, function (data) {
+      console.log(data);
+      socket.emit(serviceName + '-response', {
+        msg: 'thanks'
+      });
+    });
   };
 
-  getServiceByName('weather');
-  getServiceByName('traffic');
+  listenService('traffic');
+  listenService('weather');
 
 })(window);
