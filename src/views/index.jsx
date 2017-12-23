@@ -1,14 +1,15 @@
-var React = require('react');
-var DefaultLayout = require('./layouts/default');
+const React = require('react');
+const DefaultLayout = require('./layouts/default');
+const Weather = require('./components/weather');
 
-class HelloMessage extends React.Component {
+class Index extends React.Component {
   render() {
     return (
       <DefaultLayout title={this.props.title}>
         <div className="container">
           <div className="row py-2">
             <div className="col-sm">
-              Weather
+              <Weather value="1" />
             </div>
             <div className="col-sm">
               Traffic
@@ -31,4 +32,4 @@ class HelloMessage extends React.Component {
   }
 }
 
-module.exports = HelloMessage;
+module.exports = Index;
