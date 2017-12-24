@@ -5,9 +5,19 @@ class Weather extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+  	window.socket.on(serviceName, function (data) {
+  	  this.props.date = data.date;
+  	  this.props.level = data.level;
+  	});
+  }
+
   render() {
     return (
-      <div>{this.props.value}</div>
+      <div className="water-level">
+      	<div>{this.props.date.toLocaleTimeString()}</div>
+      	<div>{this.props.level}</div>
+      </div>
     );
   }
 }

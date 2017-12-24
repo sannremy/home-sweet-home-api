@@ -34,6 +34,11 @@ class ServiceController {
     let data = await YahooWeather.getWeather();
     res.json(data);
   }
+
+  static async getWaterLevel(req, res, next) {
+    let data = await Vigicrue.getWaterLevel();
+    res.json(data);
+  }
 }
 
 module.exports = ServiceController;

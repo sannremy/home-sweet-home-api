@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 const path = require('path');
+const axios = require('axios');
 const http = require('http');
 const express = require('express');
 const expressCfg = require('./configs/express');
@@ -31,11 +32,17 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 server.listen(PORT);
 
-io.on('connection', function(socket){
-  console.log('a user connected');
+io.on('connection', (socket) => {
+  console.log('Client connected.');
 
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+  axios
+    .get('http://' + HOST + ':' + PORT + '/service/water_level')
+    .then((response) => {
+      socket.emit('water_level', response.data);
+    });
+
+  // socket.emit('news', { hello: 'world' });
+  // socket.on('my other event', function (data) {
+  //   console.log(data);
+  // });
 });

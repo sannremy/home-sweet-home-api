@@ -9,7 +9,7 @@ class Index extends React.Component {
         <div className="container">
           <div className="row py-2">
             <div className="col-sm">
-              <Weather value="1" />
+              <Weather />
             </div>
             <div className="col-sm">
               Traffic
