@@ -36,9 +36,9 @@ io.on('connection', (socket) => {
   console.log('Client connected.');
 
   axios
-    .get('http://' + HOST + ':' + PORT + '/service/water_level')
+    .get('http://' + HOST + ':' + PORT + '/service/weather')
     .then((response) => {
-      socket.emit('water_level', response.data);
+      socket.emit('weather', response.data);
     });
 
   // socket.emit('news', { hello: 'world' });

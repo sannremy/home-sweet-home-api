@@ -1,25 +1,36 @@
 const React = require('react');
+const Utils = require('../../static/scripts/libs/utils');
 
 class Weather extends React.Component {
   constructor(props) {
     super(props);
-  }
 
-  componentDidMount() {
-  	window.socket.on(serviceName, function (data) {
-  	  this.props.date = data.date;
-  	  this.props.level = data.level;
-  	});
+    Utils.addServiceListener('weather', (data) => {
+      console.log(data);
+    });
   }
 
   render() {
     return (
-      <div className="water-level">
-      	<div>{this.props.date.toLocaleTimeString()}</div>
-      	<div>{this.props.level}</div>
+      <div className="weather">
+        <WeatherDate date="32/32/2323" />
       </div>
     );
   }
 }
 
 module.exports = Weather;
+
+class WeatherDate extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="weather__date">
+        <div>{this.props.date}</div>
+      </div>
+    );
+  }
+}
