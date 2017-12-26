@@ -1,10 +1,12 @@
-const React = require('react');
-const Utils = require('../../static/scripts/libs/utils');
+import React from 'react';
 
 class Weather extends React.Component {
   constructor(props) {
     super(props);
+  }
 
+  componentDidMount() {
+    const Utils = require('../../static/scripts/libs/utils');
     Utils.addServiceListener('weather', (data) => {
       console.log(data);
     });

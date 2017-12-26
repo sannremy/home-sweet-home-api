@@ -1,6 +1,6 @@
-const React = require('react');
-const DefaultLayout = require('./layouts/default');
-const Weather = require('./components/weather');
+import React from 'react';
+import DefaultLayout from './layouts/default';
+import Weather from './components/weather';
 
 class Index extends React.Component {
   render() {
