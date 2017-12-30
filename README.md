@@ -3,20 +3,20 @@ Dashboard of smart home devices
 
 ## Install depedencies
 ```
-npm install
+yarn install
 ```
 
 ## Build
 ```
-npm run build
+yarn run build
 ```
 
 ## Develop
 ```
-npm run watch
+yarn run watch
 ```
 
 ## Start application
 ```
-npm start
+yarn start
 ```

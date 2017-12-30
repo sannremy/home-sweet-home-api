@@ -12,23 +12,28 @@
   "dependencies": {
     "@google/maps": "^0.4.3",
     "axios": "^0.17.1",
-    "babel-preset-env": "^1.6.1",
-    "bootstrap": "^4.0.0-beta.2",
     "cheerio": "^1.0.0-rc.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "express-react-views": "^0.10.4",
     "gulp": "^3.9.1",
-    "gulp-browserify": "^0.5.1",
-    "gulp-sass": "^3.1.0",
     "moment": "^2.18.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
     "socket.io": "^2.0.4",
     "wemo-client": "^0.14.0",
     "yql": "^1.0.2"
   },
   "devDependencies": {
-    "gulp-nodemon": "^2.2.1"
+    "babel-core": "6",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^8.0.0",
+    "bootstrap": "^4.0.0-beta.2",
+    "browserify": "^14.5.0",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-sass": "^3.1.0",
+    "jquery": "1.9.1",
+    "popper.js": "^1.12.9",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   }
 }
