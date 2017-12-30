@@ -2,7 +2,7 @@ import React from 'react';
 import DefaultLayout from './layouts/default';
 import Weather from './components/weather';
 
-class Index extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <DefaultLayout title={this.props.title}>
@@ -32,4 +32,4 @@ class Index extends React.Component {
   }
 }
 
-module.exports = Index;
+module.exports = App;

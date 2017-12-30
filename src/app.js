@@ -5,6 +5,7 @@ const path = require('path');
 const axios = require('axios');
 const http = require('http');
 const express = require('express');
+const reactViews = require('express-react-views');
 const expressCfg = require('./configs/express');
 const routesCfg = require('./configs/routes');
 
@@ -14,7 +15,7 @@ for(let key in expressCfg) {
   app.set(key, expressCfg[key]);
 }
 
-app.engine('jsx', require('express-react-views').createEngine());
+app.engine('js', reactViews.createEngine());
 
 app.use('/static', express.static(path.join(process.cwd(), 'dist', 'static')));
 

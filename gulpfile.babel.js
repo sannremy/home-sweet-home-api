@@ -41,8 +41,14 @@ gulp.task('build:scripts', function() {
     .pipe(fs.createWriteStream(scriptConfig.output));
 });
 
+/**
+ * Build task
+ */
 gulp.task('build', ['build:styles', 'build:scripts']);
 
+/**
+ * Watch task
+ */
 gulp.task('watch', ['build'], function() {
   nodemon({
     script: './src/app.js',

@@ -9,7 +9,7 @@ class DashboardController {
     let date = moment();
     date.locale(config.locale);
 
-    res.render('index', {
+    res.render('app', {
       date: date
     });
   }
