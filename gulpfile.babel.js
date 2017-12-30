@@ -1,9 +1,12 @@
 import fs from 'fs';
+import path from 'path';
 import gulp from 'gulp';
 import sass from 'gulp-sass';
 import nodemon from 'gulp-nodemon';
 import browserify from 'browserify';
 import babelify from 'babelify';
+import del from 'del';
+import mkdirp from 'mkdirp';
 
 /**
  * Style config
@@ -34,7 +37,9 @@ const scriptConfig = {
   }
 };
 
-gulp.task('build:scripts', function() {
+gulp.task('build:scripts', () => {
+  mkdirp(path.dirname(scriptConfig.output));
+
   return browserify(scriptConfig.input)
     .transform(babelify, scriptConfig.babelify)
     .bundle()
@@ -49,7 +54,7 @@ gulp.task('build', ['build:styles', 'build:scripts']);
 /**
  * Watch task
  */
-gulp.task('watch', ['build'], function() {
+gulp.task('watch', ['clean', 'build'], () => {
   nodemon({
     script: './src/app.js',
     ext: 'js',
@@ -57,5 +62,25 @@ gulp.task('watch', ['build'], function() {
   });
 
   gulp.watch('./src/static/styles/**/*.scss', ['build:styles']);
-  gulp.watch('./src/static/scripts/**/*.js', ['build:scripts']);
+  gulp.watch([
+    './src/static/scripts/**/*.js',
+    './src/views/**/*.js'
+  ], ['build:scripts']);
 });
+
+/**
+ * Clean task
+ */
+gulp.task('clean:scripts', () => {
+  return del([
+    './dist/static/scripts'
+  ]);
+});
+
+gulp.task('clean:styles', () => {
+  return del([
+    './dist/static/styles'
+  ]);
+});
+
+gulp.task('clean', ['clean:scripts', 'clean:styles']);

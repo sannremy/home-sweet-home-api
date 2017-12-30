@@ -3,19 +3,26 @@ import React from 'react';
 class Weather extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
-  componentDidMount() {
+  componentDidMount(nextProps) {
     const Utils = require('../../static/scripts/libs/utils');
+
     Utils.addServiceListener('weather', (data) => {
-      console.log(data);
+      console.log('socket', data);
+      this.setState(data);
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('nextprops', nextProps);
   }
 
   render() {
     return (
       <div className="weather">
-        <WeatherDate date="32/32/2323" />
+        <WeatherSunrise sunrise="test" />
       </div>
     );
   }
@@ -23,15 +30,11 @@ class Weather extends React.Component {
 
 module.exports = Weather;
 
-class WeatherDate extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+class WeatherSunrise extends React.Component {
   render() {
     return (
-      <div className="weather__date">
-        <div>{this.props.date}</div>
+      <div className="weather__sunrise">
+        <div>{this.props.sunrise}</div>
       </div>
     );
   }
