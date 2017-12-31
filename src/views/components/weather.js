@@ -14,7 +14,6 @@ class Weather extends React.Component {
     const Utils = require('../../static/scripts/libs/utils');
 
     Utils.addServiceListener('weather', (data) => {
-      console.log('socket', data);
       data.isLoading = false;
       this.setState(data);
     });
