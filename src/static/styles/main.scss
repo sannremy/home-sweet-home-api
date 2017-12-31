@@ -1,42 +1,11 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
+@import 'components/base';
+@import 'components/weather';
+@import 'components/water-level';
+
 html, body {
   height: 100%;
   font-family: 'Open Sans', sans-serif;
   font-size: 100%;
-}
-
-.weather,
-.water-level {
-  position: relative;
-  height: 100%;
-}
-
-.weather--is-loading,
-.water-level--is-loading {
-  &::before {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-color: #ccc;
-  }
-}
-
-.water-level--green {
-  background-color: #009245;
-}
-
-.water-level--red {
-  background-color: #f00;
-}
-
-.water-level--orange {
-  background-color: #f15a24;
-}
-
-.water-level--yellow {
-  background-color: #ff0;
 }
