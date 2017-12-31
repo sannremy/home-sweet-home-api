@@ -3,7 +3,8 @@ import React from 'react';
 class Weather extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.state = props;
   }
 
   componentDidMount(nextProps) {
@@ -15,14 +16,10 @@ class Weather extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('nextprops', nextProps);
-  }
-
   render() {
     return (
       <div className="weather">
-        <WeatherSunrise sunrise="test" />
+        <WeatherSunrise sunrise={this.state.sunrise} />
       </div>
     );
   }
@@ -31,10 +28,20 @@ class Weather extends React.Component {
 module.exports = Weather;
 
 class WeatherSunrise extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      sunrise: `${props.sunrise}`
+    };
+  }
+
   render() {
+    const localeDate = (date) => date ? (new Date(date)).toLocaleDateString() : '';
+
     return (
       <div className="weather__sunrise">
-        <div>{this.props.sunrise}</div>
+        <div>{localeDate(this.props.sunrise)}</div>
       </div>
     );
   }

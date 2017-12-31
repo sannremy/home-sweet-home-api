@@ -54,7 +54,7 @@ gulp.task('build', ['build:styles', 'build:scripts']);
 /**
  * Watch task
  */
-gulp.task('watch', ['clean', 'build'], () => {
+gulp.task('watch', ['build'], () => {
   nodemon({
     script: './src/app.js',
     ext: 'js',
