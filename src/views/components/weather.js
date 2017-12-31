@@ -1,9 +1,12 @@
 import React from 'react';
+import Mixins from '../mixins';
 
+/**
+ * Weather component (main)
+ */
 class Weather extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = props;
   }
 
@@ -12,14 +15,16 @@ class Weather extends React.Component {
 
     Utils.addServiceListener('weather', (data) => {
       console.log('socket', data);
+      data.isLoading = false;
       this.setState(data);
     });
   }
 
   render() {
     return (
-      <div className="weather">
-        <WeatherSunrise sunrise={this.state.sunrise} />
+      <div className={'weather' + (this.state.isLoading ? ' is-loading' : '')}>
+        <_WeatherSunrise date={this.state.sunrise} />
+        <_WeatherSunset date={this.state.sunset} />
       </div>
     );
   }
@@ -27,21 +32,43 @@ class Weather extends React.Component {
 
 module.exports = Weather;
 
-class WeatherSunrise extends React.Component {
+/**
+ * Weather Sunrise component
+ */
+class _WeatherSunrise extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      sunrise: `${props.sunrise}`
+      date: `${props.date}`
     };
   }
 
   render() {
-    const localeDate = (date) => date ? (new Date(date)).toLocaleDateString() : '';
-
     return (
       <div className="weather__sunrise">
-        <div>{localeDate(this.props.sunrise)}</div>
+        <div>{'Sunrise: ' + Mixins.getLocaleTimeString(this.props.date)}</div>
+      </div>
+    );
+  }
+}
+
+/**
+ * Weather Sunset component
+ */
+class _WeatherSunset extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      date: `${props.date}`
+    };
+  }
+
+  render() {
+    return (
+      <div className="weather__sunset">
+        <div>{'Sunset: ' + Mixins.getLocaleTimeString(this.props.date)}</div>
       </div>
     );
   }
