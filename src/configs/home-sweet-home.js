@@ -18,6 +18,7 @@ module.exports = {
     'directions': JSON.parse(process.env.GOOGLE_MAPS_DIRECTIONS)
   },
   'vigicrue': {
-    url: process.env.VIGICRUE_URL || ''
+    levelUrl: process.env.VIGICRUE_LEVEL_URL || '',
+    attentionUrl: process.env.VIGICRUE_ATTENTION_URL || ''
   }
 };

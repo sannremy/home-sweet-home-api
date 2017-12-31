@@ -12,8 +12,18 @@ class WaterLevel extends BaseComponent {
   }
 
   render() {
+    const classNames = ['water-level'];
+
+    if (this.state.isLoading) {
+      classNames.push('water-level--is-loading');
+    }
+
+    if (this.state.color) {
+      classNames.push('water-level--' + this.state.color);
+    }
+
     return (
-      <div className={'water-level' + (this.state.isLoading ? ' water-level--is-loading' : '')}>
+      <div className={classNames.join(' ')}>
         <div>Level: {this.state.level}</div>
         <div>Date: {Mixins.getLocaleTimeString(this.state.date)}</div>
       </div>
