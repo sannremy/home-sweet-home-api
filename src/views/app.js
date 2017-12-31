@@ -1,6 +1,7 @@
 import React from 'react';
 import DefaultLayout from './layouts/default';
 import Weather from './components/weather';
+import WaterLevel from './components/water-level';
 
 class App extends React.Component {
   render() {
@@ -17,7 +18,7 @@ class App extends React.Component {
           </div>
           <div className="row py-2">
             <div className="col-sm">
-              Water level
+              <WaterLevel isLoading={true} />
             </div>
             <div className="col-sm">
               idk

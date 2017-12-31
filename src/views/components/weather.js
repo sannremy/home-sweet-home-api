@@ -1,27 +1,19 @@
 import React from 'react';
+import BaseComponent from './base';
 import Mixins from '../mixins';
 
 /**
  * Weather component (main)
  */
-class Weather extends React.Component {
+class Weather extends BaseComponent {
   constructor(props) {
     super(props);
-    this.state = props;
-  }
-
-  componentDidMount(nextProps) {
-    const Utils = require('../../static/scripts/libs/utils');
-
-    Utils.addServiceListener('weather', (data) => {
-      data.isLoading = false;
-      this.setState(data);
-    });
+    this.serviceName = 'weather';
   }
 
   render() {
     return (
-      <div className={'weather' + (this.state.isLoading ? ' is-loading' : '')}>
+      <div className={'weather' + (this.state.isLoading ? ' weather--is-loading' : '')}>
         <_WeatherSunrise date={this.state.sunrise} />
         <_WeatherSunset date={this.state.sunset} />
       </div>

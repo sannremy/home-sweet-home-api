@@ -5,3 +5,22 @@ html, body {
   font-family: 'Open Sans', sans-serif;
   font-size: 100%;
 }
+
+.weather,
+.water-level {
+  position: relative;
+  height: 100%;
+}
+
+.weather--is-loading,
+.water-level--is-loading {
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: #ccc;
+  }
+}
