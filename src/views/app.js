@@ -10,7 +10,7 @@ class App extends React.Component {
         <div className="container">
           <div className="row py-2">
             <div className="col-sm">
-              <Weather isLoading={true} />
+              <Weather />
             </div>
             <div className="col-sm">
               Traffic
@@ -18,7 +18,7 @@ class App extends React.Component {
           </div>
           <div className="row py-2">
             <div className="col-sm">
-              <WaterLevel isLoading={true} />
+              <WaterLevel />
             </div>
             <div className="col-sm">
               idk

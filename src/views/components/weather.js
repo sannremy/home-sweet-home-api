@@ -20,7 +20,7 @@ class Weather extends BaseComponent {
 
     return (
       <div className={classNames.join(' ')}>
-        <_WeatherTemperature temperature={this.state.temperature} />
+        <_WeatherCondition condition={this.state.condition} />
         <_WeatherSunrise date={this.state.sunrise} />
         <_WeatherSunset date={this.state.sunset} />
         <_WeatherForecast forecast={this.state.forecast} />
@@ -37,10 +37,6 @@ module.exports = Weather;
 class _WeatherSunrise extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      date: `${props.date}`
-    };
   }
 
   render() {
@@ -58,10 +54,6 @@ class _WeatherSunrise extends React.Component {
 class _WeatherSunset extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      date: `${props.date}`
-    };
   }
 
   render() {
@@ -74,21 +66,22 @@ class _WeatherSunset extends React.Component {
 }
 
 /**
- * Weather Temperature component
+ * Weather current condition component
  */
-class _WeatherTemperature extends React.Component {
+class _WeatherCondition extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      temperature: `${props.temperature}`
-    };
   }
 
   render() {
+    let condition = null;
+    if (this.props.condition) {
+      condition = <div>{this.props.condition.temp + '°C'}</div>
+    }
+
     return (
-      <div className="weather__temperature">
-        <div>{this.props.temperature + '°C'}</div>
+      <div className="weather__condition">
+        {condition}
       </div>
     );
   }
@@ -100,10 +93,6 @@ class _WeatherTemperature extends React.Component {
 class _WeatherForecast extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      forecast: `${props.forecast}`
-    };
   }
 
   render() {
@@ -137,10 +126,6 @@ class _WeatherForecast extends React.Component {
 class _WeatherIcon extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      code: parseInt(props.code, 10)
-    };
   }
 
   render() {
@@ -148,152 +133,152 @@ class _WeatherIcon extends React.Component {
     // Icons from https://erikflowers.github.io/weather-icons/
     let icon = '';
 
-    switch(this.state.code) {
-      case 0:
+    switch(this.props.code) {
+      case '0':
         icon = 'tornado';
         break;
-      case 1:
+      case '1':
         icon = 'storm-showers';
         break;
-      case 2:
+      case '2':
         icon = 'tornado';
         break;
-      case 3:
+      case '3':
         icon = 'thunderstorm';
         break;
-      case 4:
+      case '4':
         icon = 'thunderstorm';
         break;
-      case 5:
+      case '5':
         icon = 'snow';
         break;
-      case 6:
+      case '6':
         icon = 'rain-mix';
         break;
-      case 7:
+      case '7':
         icon = 'rain-mix';
         break;
-      case 8:
+      case '8':
         icon = 'sprinkle';
         break;
-      case 9:
+      case '9':
         icon = 'sprinkle';
         break;
-      case 10:
+      case '10':
         icon = 'hail';
         break;
-      case 11:
+      case '11':
         icon = 'showers';
         break;
-      case 12:
+      case '12':
         icon = 'showers';
         break;
-      case 13:
+      case '13':
         icon = 'snow';
         break;
-      case 14:
+      case '14':
         icon = 'storm-showers';
         break;
-      case 15:
+      case '15':
         icon = 'snow';
         break;
-      case 16:
+      case '16':
         icon = 'snow';
         break;
-      case 17:
+      case '17':
         icon = 'hail';
         break;
-      case 18:
+      case '18':
         icon = 'hail';
         break;
-      case 19:
+      case '19':
         icon = 'cloudy-gusts';
         break;
-      case 20:
+      case '20':
         icon = 'fog';
         break;
-      case 21:
+      case '21':
         icon = 'fog';
         break;
-      case 22:
+      case '22':
         icon = 'fog';
         break;
-      case 23:
+      case '23':
         icon = 'cloudy-gusts';
         break;
-      case 24:
+      case '24':
         icon = 'cloudy-windy';
         break;
-      case 25:
+      case '25':
         icon = 'thermometer';
         break;
-      case 26:
+      case '26':
         icon = 'cloudy';
         break;
-      case 27:
+      case '27':
         icon = 'night-cloudy';
         break;
-      case 28:
+      case '28':
         icon = 'day-cloudy';
         break;
-      case 29:
+      case '29':
         icon = 'night-cloudy';
         break;
-      case 30:
+      case '30':
         icon = 'day-cloudy';
         break;
-      case 31:
+      case '31':
         icon = 'night-clear';
         break;
-      case 32:
+      case '32':
         icon = 'day-sunny';
         break;
-      case 33:
+      case '33':
         icon = 'night-clear';
         break;
-      case 34:
+      case '34':
         icon = 'day-sunny-overcast';
         break;
-      case 35:
+      case '35':
         icon = 'hail';
         break;
-      case 36:
+      case '36':
         icon = 'day-sunny';
         break;
-      case 37:
+      case '37':
         icon = 'thunderstorm';
         break;
-      case 38:
+      case '38':
         icon = 'thunderstorm';
         break;
-      case 39:
+      case '39':
         icon = 'thunderstorm';
         break;
-      case 40:
+      case '40':
         icon = 'storm-showers';
         break;
-      case 41:
+      case '41':
         icon = 'snow';
         break;
-      case 42:
+      case '42':
         icon = 'snow';
         break;
-      case 43:
+      case '43':
         icon = 'snow';
         break;
-      case 44:
+      case '44':
         icon = 'cloudy';
         break;
-      case 45:
+      case '45':
         icon = 'lightning';
         break;
-      case 46:
+      case '46':
         icon = 'snow';
         break;
-      case 47:
+      case '47':
         icon = 'thunderstorm';
         break;
-      case 3200:
+      case '3200':
         icon = 'cloud';
         break;
       default:

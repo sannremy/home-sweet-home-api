@@ -6,8 +6,11 @@ import React from 'react';
 class BaseComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props;
     this.serviceName = null;
+
+    this.state = {
+      isLoading: true
+    };
   }
 
   componentDidMount() {
@@ -16,6 +19,7 @@ class BaseComponent extends React.Component {
 
       Utils.addServiceListener(this.serviceName, (data) => {
         console.log(data);
+
         data.isLoading = false;
         this.setState(data);
       });
