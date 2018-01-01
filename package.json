@@ -20,6 +20,7 @@
     "mkdirp": "^0.5.1",
     "moment": "^2.18.1",
     "socket.io": "^2.0.4",
+    "weather-icons-sass": "^2.0.10",
     "wemo-client": "^0.14.0",
     "yql": "^1.0.2"
   },

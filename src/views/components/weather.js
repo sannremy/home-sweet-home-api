@@ -119,6 +119,7 @@ class _WeatherForecast extends React.Component {
                   <div>{day.high}</div>
                   <div>{day.low}</div>
                   <div>{day.text}</div>
+                  <i className="wi wi-day-sunny"></i>
                 </li>;
       });
     }

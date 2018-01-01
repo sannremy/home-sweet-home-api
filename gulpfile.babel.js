@@ -26,6 +26,13 @@ gulp.task('build:styles', () => {
     .pipe(gulp.dest(styleConfig.output));
 });
 
+gulp.task('build:fonts', () => {
+  return gulp.src([
+      './node_modules/weather-icons-sass/font/**/*'
+    ])
+    .pipe(gulp.dest('./dist/static/fonts'));
+});
+
 /**
  * Script config
  */
@@ -49,7 +56,7 @@ gulp.task('build:scripts', () => {
 /**
  * Build task
  */
-gulp.task('build', ['build:styles', 'build:scripts']);
+gulp.task('build', ['build:fonts', 'build:styles', 'build:scripts']);
 
 /**
  * Watch task

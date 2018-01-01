@@ -5445,6 +5445,10 @@ vm-browserify@~0.0.1:
   dependencies:
     indexof "0.0.1"
 
+weather-icons-sass@^2.0.10:
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/weather-icons-sass/-/weather-icons-sass-2.0.10.tgz#af0552dc6e6ebba70be61f56fc2168d71ad597b6"
+
 wemo-client@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/wemo-client/-/wemo-client-0.14.0.tgz#77df462958772f60b0c08ed80210a96d7544fc6d"

@@ -1,5 +1,8 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
+$wi-path: '../fonts';
+@import '../../../node_modules/weather-icons-sass/sass/weather-icons.scss';
+
 @import 'components/base';
 @import 'components/weather';
 @import 'components/water-level';
