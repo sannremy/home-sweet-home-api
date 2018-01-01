@@ -51,7 +51,7 @@ class _WeatherSunrise extends React.Component {
 /**
  * Weather Sunset component
  */
-class _WeatherSunset extends React.Component {
+class _WeatherSunset extends BaseComponent {
   constructor(props) {
     super(props);
   }
@@ -68,7 +68,7 @@ class _WeatherSunset extends React.Component {
 /**
  * Weather current condition component
  */
-class _WeatherCondition extends React.Component {
+class _WeatherCondition extends BaseComponent {
   constructor(props) {
     super(props);
   }
@@ -76,7 +76,13 @@ class _WeatherCondition extends React.Component {
   render() {
     let condition = null;
     if (this.props.condition) {
-      condition = <div>{this.props.condition.temp + '°C'}</div>
+      condition = (
+        <div>
+          <_WeatherIcon code={this.props.condition.code} />
+          <div className="weather__condition__temperature">{this.props.condition.temp + '°C'}</div>
+          <div>{this.props.condition.text}</div>
+        </div>
+      );
     }
 
     return (
@@ -99,17 +105,19 @@ class _WeatherForecast extends React.Component {
     let daysList = [];
 
     if (this.props.forecast && this.props.forecast.length) {
+      const Utils = require('../../static/scripts/libs/utils');
+
       daysList = this.props.forecast.map((day) => {
-        return  <li key={day.date}>
-                  <div>{day.date}</div>
-                  <div>{day.code}</div>
-                  <div>{day.date}</div>
-                  <div>{day.day}</div>
-                  <div>{day.high}</div>
-                  <div>{day.low}</div>
-                  <div>{day.text}</div>
-                  <_WeatherIcon code={day.code} />
-                </li>;
+        return  (
+          <li key={day.date}>
+            <div>{Mixins.getLocaleDateString(day.date, 'DD MMM YYYY')}</div>
+            <div>{day.code}</div>
+            <div>{day.high}</div>
+            <div>{day.low}</div>
+            <div>{day.text}</div>
+            <_WeatherIcon code={day.code} />
+          </li>
+        );
       });
     }
 
