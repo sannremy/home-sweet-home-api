@@ -12,8 +12,14 @@ class Weather extends BaseComponent {
   }
 
   render() {
+    const classNames = ['weather'];
+
+    if (this.state.isLoading) {
+      classNames.push('weather--is-loading');
+    }
+
     return (
-      <div className={'weather' + (this.state.isLoading ? ' weather--is-loading' : '')}>
+      <div className={classNames.join(' ')}>
         <_WeatherSunrise date={this.state.sunrise} />
         <_WeatherSunset date={this.state.sunset} />
       </div>
