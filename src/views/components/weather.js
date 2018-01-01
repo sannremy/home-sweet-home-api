@@ -23,6 +23,7 @@ class Weather extends BaseComponent {
         <_WeatherTemperature temperature={this.state.temperature} />
         <_WeatherSunrise date={this.state.sunrise} />
         <_WeatherSunset date={this.state.sunset} />
+        <_WeatherForecast forecast={this.state.forecast} />
       </div>
     );
   }
@@ -88,6 +89,45 @@ class _WeatherTemperature extends React.Component {
     return (
       <div className="weather__temperature">
         <div>{this.props.temperature + '°C'}</div>
+      </div>
+    );
+  }
+}
+
+/**
+ * Weather Forecast component
+ */
+class _WeatherForecast extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      forecast: `${props.forecast}`
+    };
+  }
+
+  render() {
+    let daysList = [];
+
+    if (this.props.forecast && this.props.forecast.length) {
+      daysList = this.props.forecast.map((day) => {
+        return  <li key={day.date}>
+                  <div>{day.date}</div>
+                  <div>{day.code}</div>
+                  <div>{day.date}</div>
+                  <div>{day.day}</div>
+                  <div>{day.high}</div>
+                  <div>{day.low}</div>
+                  <div>{day.text}</div>
+                </li>;
+      });
+    }
+
+    return (
+      <div className="weather__forecast">
+        {daysList.length > 0 &&
+          <ul>{daysList}</ul>
+        }
       </div>
     );
   }
