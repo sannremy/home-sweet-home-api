@@ -12,6 +12,8 @@ class App extends React.Component {
             <div className="col-sm">
               <Weather />
             </div>
+          </div>
+          <div className="row py-2">
             <div className="col-sm">
               Traffic
             </div>

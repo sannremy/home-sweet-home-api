@@ -21,7 +21,9 @@ class BaseComponent extends React.Component {
         console.log(data);
 
         data.isLoading = false;
-        this.setState(data);
+        this.setState(data, () => {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
       });
     }
   }

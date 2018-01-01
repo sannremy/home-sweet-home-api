@@ -41,7 +41,7 @@ class _WeatherSunrise extends React.Component {
 
   render() {
     return (
-      <div className="weather__sunrise">
+      <div className="weather-sunrise">
         <div>{'Sunrise: ' + Mixins.getLocaleTimeString(this.props.date)}</div>
       </div>
     );
@@ -58,7 +58,7 @@ class _WeatherSunset extends BaseComponent {
 
   render() {
     return (
-      <div className="weather__sunset">
+      <div className="weather-sunset">
         <div>{'Sunset: ' + Mixins.getLocaleTimeString(this.props.date)}</div>
       </div>
     );
@@ -79,14 +79,14 @@ class _WeatherCondition extends BaseComponent {
       condition = (
         <div>
           <_WeatherIcon code={this.props.condition.code} />
-          <div className="weather__condition__temperature">{this.props.condition.temp + '°C'}</div>
+          <div className="weather-condition__temperature">{this.props.condition.temp + '°C'}</div>
           <div>{this.props.condition.text}</div>
         </div>
       );
     }
 
     return (
-      <div className="weather__condition">
+      <div className="weather-condition">
         {condition}
       </div>
     );
@@ -109,22 +109,31 @@ class _WeatherForecast extends React.Component {
 
       daysList = this.props.forecast.map((day) => {
         return  (
-          <li key={day.date}>
-            <div>{Mixins.getLocaleDateString(day.date, 'DD MMM YYYY')}</div>
-            <div>{day.code}</div>
-            <div>{day.high}</div>
-            <div>{day.low}</div>
-            <div>{day.text}</div>
-            <_WeatherIcon code={day.code} />
+          <li key={day.date} className="weather-forecast__list__item">
+            <div className="weather-forecast__list__item__date">
+              {Mixins.getLocaleCalendarString(day.date, 'DD MMM YYYY')}
+            </div>
+            <div className="weather-forecast__list__item__code">
+              {day.code}
+            </div>
+            <div className="weather-forecast__list__item__high">
+              {day.high}
+            </div>
+            <div className="weather-forecast__list__item__low">
+              {day.low}
+            </div>
+            <div data-toggle="tooltip" data-placement="bottom" title={day.text}>
+              <_WeatherIcon code={day.code} />
+            </div>
           </li>
         );
       });
     }
 
     return (
-      <div className="weather__forecast">
+      <div className="weather-forecast">
         {daysList.length > 0 &&
-          <ul>{daysList}</ul>
+          <ul className="weather-forecast__list">{daysList}</ul>
         }
       </div>
     );
@@ -294,7 +303,7 @@ class _WeatherIcon extends React.Component {
         break;
     }
 
-    const classNames = ['wi', 'wi-' + icon];
+    const classNames = ['wi', 'wi-' + icon, 'weather-icon'];
 
     return <i className={classNames.join(' ')} />;
   }
