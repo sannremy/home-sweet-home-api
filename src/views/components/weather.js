@@ -20,6 +20,7 @@ class Weather extends BaseComponent {
 
     return (
       <div className={classNames.join(' ')}>
+        <_WeatherTemperature temperature={this.state.temperature} />
         <_WeatherSunrise date={this.state.sunrise} />
         <_WeatherSunset date={this.state.sunset} />
       </div>
@@ -66,6 +67,27 @@ class _WeatherSunset extends React.Component {
     return (
       <div className="weather__sunset">
         <div>{'Sunset: ' + Mixins.getLocaleTimeString(this.props.date)}</div>
+      </div>
+    );
+  }
+}
+
+/**
+ * Weather Temperature component
+ */
+class _WeatherTemperature extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      temperature: `${props.temperature}`
+    };
+  }
+
+  render() {
+    return (
+      <div className="weather__temperature">
+        <div>{this.props.temperature + '°C'}</div>
       </div>
     );
   }
