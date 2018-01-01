@@ -20,10 +20,24 @@ class Weather extends BaseComponent {
 
     return (
       <div className={classNames.join(' ')}>
-        <_WeatherCondition condition={this.state.condition} />
-        <_WeatherSunrise date={this.state.sunrise} />
-        <_WeatherSunset date={this.state.sunset} />
-        <_WeatherForecast forecast={this.state.forecast} />
+        <div className="row">
+          <div className="col">
+            <_WeatherCondition condition={this.state.condition} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <_WeatherSunrise date={this.state.sunrise} />
+          </div>
+          <div className="col">
+            <_WeatherSunset date={this.state.sunset} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <_WeatherForecast forecast={this.state.forecast} />
+          </div>
+        </div>
       </div>
     );
   }
@@ -42,7 +56,8 @@ class _WeatherSunrise extends React.Component {
   render() {
     return (
       <div className="weather-sunrise">
-        <div>{'Sunrise: ' + Mixins.getLocaleTimeString(this.props.date)}</div>
+        <i className="wi wi-sunrise" />
+        {Mixins.getLocaleTimeString(this.props.date)}
       </div>
     );
   }
@@ -59,7 +74,8 @@ class _WeatherSunset extends BaseComponent {
   render() {
     return (
       <div className="weather-sunset">
-        <div>{'Sunset: ' + Mixins.getLocaleTimeString(this.props.date)}</div>
+        <i className="wi wi-sunset" />
+        {Mixins.getLocaleTimeString(this.props.date)}
       </div>
     );
   }
@@ -78,9 +94,15 @@ class _WeatherCondition extends BaseComponent {
     if (this.props.condition) {
       condition = (
         <div>
-          <_WeatherIcon code={this.props.condition.code} />
-          <div className="weather-condition__temperature">{this.props.condition.temp + '°C'}</div>
-          <div>{this.props.condition.text}</div>
+          <div className="row">
+            <div className="col">
+              <div className="weather-condition__temperature">{this.props.condition.temp + '°C'}</div>
+            </div>
+            <div className="col">
+              <_WeatherIcon code={this.props.condition.code} />
+              <div>{this.props.condition.text}</div>
+            </div>
+          </div>
         </div>
       );
     }
@@ -109,23 +131,22 @@ class _WeatherForecast extends React.Component {
 
       daysList = this.props.forecast.map((day) => {
         return  (
-          <li key={day.date} className="weather-forecast__list__item">
-            <div className="weather-forecast__list__item__date">
-              {Mixins.getLocaleCalendarString(day.date, 'DD MMM YYYY')}
-            </div>
-            <div className="weather-forecast__list__item__code">
-              {day.code}
-            </div>
-            <div className="weather-forecast__list__item__high">
-              {day.high}
-            </div>
-            <div className="weather-forecast__list__item__low">
-              {day.low}
-            </div>
+          <div className="col" key={day.date}>
             <div data-toggle="tooltip" data-placement="bottom" title={day.text}>
               <_WeatherIcon code={day.code} />
             </div>
-          </li>
+            <div>
+              {Mixins.getLocaleCalendarString(day.date, 'DD MMM YYYY')}
+            </div>
+            <div>
+              <i className="fa fa-arrow-circle-up" aria-hidden="true" />
+              {day.high + '°C'}
+            </div>
+            <div>
+              <i className="fa fa-arrow-circle-down" aria-hidden="true" />
+              {day.low + '°C'}
+            </div>
+          </div>
         );
       });
     }
@@ -133,7 +154,9 @@ class _WeatherForecast extends React.Component {
     return (
       <div className="weather-forecast">
         {daysList.length > 0 &&
-          <ul className="weather-forecast__list">{daysList}</ul>
+          <div className="row">
+            {daysList}
+          </div>
         }
       </div>
     );

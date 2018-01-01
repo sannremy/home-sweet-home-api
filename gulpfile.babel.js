@@ -28,7 +28,8 @@ gulp.task('build:styles', () => {
 
 gulp.task('build:fonts', () => {
   return gulp.src([
-      './node_modules/weather-icons-sass/font/**/*'
+      './node_modules/weather-icons-sass/font/**/*',
+      './node_modules/font-awesome/fonts/**/*'
     ])
     .pipe(gulp.dest('./dist/static/fonts'));
 });

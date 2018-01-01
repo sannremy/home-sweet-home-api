@@ -1,8 +1,14 @@
+// Bootstrap
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
+// Weather icons
 $wi-path: '../fonts';
 @import '../../../node_modules/weather-icons-sass/sass/weather-icons.scss';
 
+// Font Awesome
+@import '../../../node_modules/font-awesome/scss/font-awesome';
+
+// Components
 @import 'components/base';
 @import 'components/weather';
 @import 'components/water-level';
