@@ -55,7 +55,7 @@ class _TrafficItem extends React.Component {
   render() {
     return (
       <div className="traffic-item">
-        {this.props.duration.label} : {this.props.duration.duration}
+        {this.props.duration.label} : {Mixins.getDurationFromGoogleMaps(this.props.duration.duration)} ({this.props.duration.distance / 1000 + ' km'})
       </div>
     );
   }

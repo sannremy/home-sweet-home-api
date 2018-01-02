@@ -12,18 +12,23 @@ class GoogleMaps {
   static async getDurations() {
     let durations = [];
     for (let direction of config.googleMaps.directions) {
-      let duration = await googleMapsClient.directions({
-        origin: direction.origin,
-        destination: direction.destination,
+      let duration = await googleMapsClient.distanceMatrix({
+        origins: [direction.origin],
+        destinations: [direction.destination],
+        departure_time: (new Date()).getTime(),
         mode: 'driving',
-        avoid: ['tolls']
+        avoid: ['tolls'],
+        traffic_model: 'best_guess'
       }).asPromise().then((response) => {
-        let directionDuration = moment.duration(response.json.routes[0].legs[0].duration.value, 'seconds');
+        let directionDuration = moment.duration(response.json.rows[0].elements[0].duration.value, 'seconds');
         directionDuration.locale(config.locale);
+
+        let directionDistance = response.json.rows[0].elements[0].distance.value; // in meter
 
         return {
           label: direction.label,
-          duration: directionDuration
+          duration: directionDuration,
+          distance: directionDistance
         };
       }).catch((err) => {
         if (err === 'timeout') {
