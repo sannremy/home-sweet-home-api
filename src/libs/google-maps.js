@@ -16,6 +16,7 @@ class GoogleMaps {
         origin: direction.origin,
         destination: direction.destination,
         mode: 'driving',
+        avoid: ['tolls']
       }).asPromise().then((response) => {
         let directionDuration = moment.duration(response.json.routes[0].legs[0].duration.value, 'seconds');
         directionDuration.locale(config.locale);
@@ -37,7 +38,9 @@ class GoogleMaps {
       durations.push(duration);
     }
 
-    return durations;
+    return {
+      durations: durations
+    };
   }
 }
 

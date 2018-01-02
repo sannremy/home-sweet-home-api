@@ -23,6 +23,12 @@ class Mixins {
 
     return dateStr ? moment(dateStr, format).calendar() : null;
   }
+
+  static getDurationFromGoogleMaps(durationStr) {
+    // PT23M23S
+    let regex = new RegExp('/PT([0-9]+H)?([0-9]+M)?([0-9]+S)?/', 'g');
+    durationStr.match(regex);
+  }
 }
 
 module.exports = Mixins;

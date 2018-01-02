@@ -1,3 +1,4 @@
+.traffic,
 .weather,
 .water-level {
   position: relative;
@@ -9,6 +10,7 @@
   padding: 10px;
 }
 
+.traffic--is-loading,
 .weather--is-loading,
 .water-level--is-loading {
   &::before {

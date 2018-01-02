@@ -2,6 +2,7 @@ import React from 'react';
 import DefaultLayout from './layouts/default';
 import Weather from './components/weather';
 import WaterLevel from './components/water-level';
+import Traffic from './components/traffic';
 
 class App extends React.Component {
   render() {
@@ -15,7 +16,7 @@ class App extends React.Component {
           </div>
           <div className="row py-2">
             <div className="col-sm">
-              Traffic
+              <Traffic />
             </div>
           </div>
           <div className="row py-2">

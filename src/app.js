@@ -48,6 +48,12 @@ io.on('connection', (socket) => {
       socket.emit('water_level', response.data);
     });
 
+  axios
+    .get('http://' + HOST + ':' + PORT + '/service/traffic')
+    .then((response) => {
+      socket.emit('traffic', response.data);
+    });
+
   // socket.emit('news', { hello: 'world' });
   // socket.on('my other event', function (data) {
   //   console.log(data);
