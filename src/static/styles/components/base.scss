@@ -24,4 +24,29 @@
     z-index: 1;
     background: #9E9E9E;
   }
+
+  &::after {
+    content: '';
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    z-index: 1;
+    animation: spin 1s linear infinite;
+    border: 3px solid #ddd;
+    border-top: 3px solid #42a5f5;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+  }
+}
+
+@keyframes spin {
+  to {
+    border-top-color: #ec407a;
+    transform: translateY(-50%) rotate(360deg);
+  }
 }
