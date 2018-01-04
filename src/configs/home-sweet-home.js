@@ -20,5 +20,9 @@ module.exports = {
   'vigicrue': {
     levelUrl: process.env.VIGICRUE_LEVEL_URL || '',
     attentionUrl: process.env.VIGICRUE_ATTENTION_URL || ''
+  },
+  'netatmo': {
+    'clientId': process.env.NETATMO_CLIENT_ID,
+    'clientSecret': process.env.NETATMO_CLIENT_SECRET
   }
 };
