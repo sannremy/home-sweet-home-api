@@ -23,6 +23,8 @@ module.exports = {
   },
   'netatmo': {
     'clientId': process.env.NETATMO_CLIENT_ID,
-    'clientSecret': process.env.NETATMO_CLIENT_SECRET
+    'clientSecret': process.env.NETATMO_CLIENT_SECRET,
+    'username': process.env.NETATMO_USERNAME,
+    'password': process.env.NETATMO_PASSWORD,
   }
 };

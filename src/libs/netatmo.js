@@ -3,28 +3,36 @@ const moment = require('moment');
 const axios = require('axios');
 
 class Netatmo {
-  authorize() {
-    // https://api.netatmo.com/oauth2/authorize?
-    //     client_id=[YOUR_APP_ID]
-    //     &redirect_uri=[YOUR_REDIRECT_URI]
-    //     &scope=[SCOPE_DOT_SEPARATED]
-    //     &state=[SOME_ARBITRARY_BUT_UNIQUE_STRING]
+  constructor() {
+    this.access_token = null;
   }
 
-  token() {
-    // POST /oauth2/token HTTP/1.1
-    //     Host: api.netatmo.com
-    //     Content-Type: application/x-www-form-urlencoded;charset=UTF-8
-
-    //     grant_type=authorization_code
-    //     client_id=[YOUR_APP_ID]
-    //     client_secret=[YOUR_CLIENT_SECRET]
-    //     code=[CODE_RECEIVED_FROM_USER]
-    //     redirect_uri=[YOUR_REDIRECT_URI]
-    //     scope=[SCOPE_DOT_SEPARATED]
+  async getAccessToken() {
+    axios({
+      'method': 'post',
+      'url': 'https://api.netatmo.com/oauth2/token',
+      'data': {
+        'grant_type': 'password',
+        'client_id': config.netatmo.clientId,
+        'client_secret': config.netatmo.clientIdSecret,
+        'username': config.netatmo.username,
+        'password': config.netatmo.password,
+        'scope': 'read_station'
+      }
+    }).then(response => {
+      console.log(response);
+      let access_token = response;
+      return access_token;
+    }).catch(err => {
+      console.log(err);
+    });
   }
-  static getInfo() {
 
+  async getIndoorMetrics() {
+    if (this.access_token === null) {
+      let access_token = await this.getAccessToken();
+      console.log(access_token);
+    }
   }
 }
 

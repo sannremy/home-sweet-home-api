@@ -54,6 +54,12 @@ io.on('connection', (socket) => {
       socket.emit('traffic', response.data);
     });
 
+  axios
+    .get('http://' + HOST + ':' + PORT + '/service/indoor_metrics')
+    .then((response) => {
+      socket.emit('indoor_metrics', response.data);
+    });
+
   // socket.emit('news', { hello: 'world' });
   // socket.on('my other event', function (data) {
   //   console.log(data);

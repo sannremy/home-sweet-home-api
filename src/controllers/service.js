@@ -2,11 +2,16 @@
 
 const config = require('../configs/home-sweet-home');
 
+// Libs
 const YahooWeather = require('../libs/yahoo-weather');
 const GoogleMaps = require('../libs/google-maps');
 const Vigicrue = require('../libs/vigicrue');
 const WemoSwitchInsight = require('../libs/wemo-switch-insight');
 const NetgearRouter = require('../libs/netgear-router');
+const Netatmo = require('../libs/netatmo');
+
+// Instances
+const netatmo = new Netatmo();
 
 class ServiceController {
   static async getConnectedDevices(req, res, next) {
@@ -37,6 +42,11 @@ class ServiceController {
 
   static async getWaterLevel(req, res, next) {
     let data = await Vigicrue.getWaterLevel();
+    res.json(data);
+  }
+
+  static async getIndoorMetrics(req, res, next) {
+    let data = await netatmo.getIndoorMetrics();
     res.json(data);
   }
 }
