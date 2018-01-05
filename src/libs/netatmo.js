@@ -38,46 +38,25 @@ class Netatmo {
     return axios.post(this.api + 'api/getstationsdata', {
       access_token: this.access_token
     }).then(response => {
-      // main
-      console.log(response.data.body.devices[0]);
-      // station_name
-      // type
-      // dashboard_data:
-        // AbsolutePressure
-        // time_utc
-        // Noise
-        // Temperature
-        // temp_trend
-        // Humidity
-        // Pressure
-        // pressure_trend
-        // CO2
-        // date_max_temp
-        // date_min_temp
-        // min_temp
-        // max_temp
-      // data_type
-      // co2_calibrating
-      // date_setup
-      // last_setup
-      // module_name
-      // firmware
-      // last_upgrade
-      // wifi_status
+      let modules = [];
 
-      // modules
-      console.log(response.data.body.devices[0]);
-        // module.type
-        // module.last_message
-        // module.last_seen
-        // module.dashboard_data
-        // module.data_type
-        // module.module_name
-        // module.last_setup
-        // module.battery_vp
-        // module.battery_percent
-        // module.rf_status
-        // module.firmware
+      let mainModule = response.data.body.devices[0];
+
+      modules.push({
+        module_name: mainModule.module_name,
+        dashboard_data: mainModule.dashboard_data
+      });
+
+      response.data.body.devices[0].modules.forEach(module => {
+        modules.push({
+          module_name: module.module_name,
+          dashboard_data: module.dashboard_data
+        });
+      });
+
+      return {
+        modules: modules
+      };
     });
   }
 }
