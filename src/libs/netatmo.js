@@ -44,13 +44,15 @@ class Netatmo {
 
       modules.push({
         module_name: mainModule.module_name,
-        dashboard_data: mainModule.dashboard_data
+        dashboard_data: mainModule.dashboard_data,
+        type: 'main'
       });
 
       response.data.body.devices[0].modules.forEach(module => {
         modules.push({
           module_name: module.module_name,
-          dashboard_data: module.dashboard_data
+          dashboard_data: module.dashboard_data,
+          type: 'additional'
         });
       });
 
