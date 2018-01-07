@@ -38,26 +38,37 @@ class Netatmo {
     return axios.post(this.api + 'api/getstationsdata', {
       access_token: this.access_token
     }).then(response => {
-      let modules = [];
+      let mainModules = [];
+      let additionalModules = [];
+      let rainModules = [];
+      let outdoorModules = [];
 
       let mainModule = response.data.body.devices[0];
 
-      modules.push({
+      mainModules.push({
         module_name: mainModule.module_name,
         dashboard_data: mainModule.dashboard_data,
-        type: 'main'
       });
 
       response.data.body.devices[0].modules.forEach(module => {
-        modules.push({
+        let moduleObj = {
           module_name: module.module_name,
           dashboard_data: module.dashboard_data,
-          type: 'additional'
-        });
+        };
+
+        if (module.type === 'NAModule4') { // additional modules
+          additionalModules.push(moduleObj);
+        } else if (module.type === 'NAModule3') { // Rain module
+          rainModules.push(moduleObj);
+        } else if (module.type === 'NAModule1') { // Outdoor module
+          outdoorModules.push(moduleObj);
+        }
       });
 
       return {
-        modules: modules
+        main: mainModules,
+        additional: additionalModules,
+        outdoor: additionalModules,
       };
     });
   }

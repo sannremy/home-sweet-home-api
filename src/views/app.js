@@ -3,6 +3,7 @@ import DefaultLayout from './layouts/default';
 import Weather from './components/weather';
 import WaterLevel from './components/water-level';
 import Traffic from './components/traffic';
+import IndoorMetric from './components/indoor-metric';
 
 class App extends React.Component {
   render() {
@@ -24,7 +25,7 @@ class App extends React.Component {
               <WaterLevel />
             </div>
             <div className="col-sm">
-              idk
+              <IndoorMetric />
             </div>
             <div className="col-sm">
               Devices
