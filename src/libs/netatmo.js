@@ -68,7 +68,8 @@ class Netatmo {
       return {
         main: mainModules,
         additional: additionalModules,
-        outdoor: additionalModules,
+        rain: rainModules,
+        outdoor: outdoorModules,
       };
     });
   }
