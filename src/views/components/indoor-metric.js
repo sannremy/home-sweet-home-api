@@ -18,12 +18,52 @@ class IndoorMetric extends BaseComponent {
       classNames.push('indoor-metric--is-loading');
     }
 
+    let indoorList = [];
+
+    let moduleComponent = (module) => {
+      return (
+        <div key={module.module_name}>
+          <span>{module.module_name}</span>:
+          <_IndoorMetricCO2 value={module.dashboard_data.CO2} />
+        </div>
+      );
+    };
+
+    if (this.state.main && this.state.main.length) {
+      indoorList = indoorList.concat(this.state.main.map(moduleComponent));
+    }
+
+    if (this.state.additional && this.state.additional.length) {
+      indoorList = indoorList.concat(this.state.additional.map(moduleComponent));
+    }
+
     return (
       <div className={classNames.join(' ')}>
-      test
+        {indoorList.length > 0 &&
+          <div>
+            {indoorList}
+          </div>
+        }
       </div>
     );
   }
 }
 
 module.exports = IndoorMetric;
+
+/**
+ * Indoor metric CO2 component
+ */
+class _IndoorMetricCO2 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="indoor-metric-co2">
+        {this.props.value} ppm
+      </div>
+    );
+  }
+}

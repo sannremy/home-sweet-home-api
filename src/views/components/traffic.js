@@ -45,7 +45,7 @@ class Traffic extends BaseComponent {
 module.exports = Traffic;
 
 /**
- * Traffic component (main)
+ * Traffic Item component
  */
 class _TrafficItem extends React.Component {
   constructor(props) {
