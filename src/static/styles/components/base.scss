@@ -1,7 +1,8 @@
 .traffic,
 .weather,
 .water-level,
-.indoor-metric {
+.indoor-metric,
+.connected-device {
   position: relative;
   height: 100%;
   box-sizing: border-box;
@@ -14,7 +15,8 @@
 .traffic--is-loading,
 .weather--is-loading,
 .water-level--is-loading,
-.indoor-metric--is-loading {
+.indoor-metric--is-loading,
+.connected-device--is-loading {
   &::before {
     content: '';
     position: absolute;

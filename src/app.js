@@ -59,4 +59,10 @@ io.on('connection', (socket) => {
     .then((response) => {
       socket.emit('indoor_metrics', response.data);
     });
+
+  axios
+    .get('http://' + HOST + ':' + PORT + '/service/connected_devices')
+    .then((response) => {
+      socket.emit('connected_devices', response.data);
+    });
 });

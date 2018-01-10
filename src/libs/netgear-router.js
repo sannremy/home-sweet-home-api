@@ -134,7 +134,9 @@ class NetgearRouter {
       attachDevices.push(deviceSplit);
     }
 
-    return attachDevices;
+    return {
+      devices: attachDevices
+    };
   }
 }
 
