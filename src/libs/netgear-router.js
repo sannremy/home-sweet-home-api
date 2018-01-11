@@ -131,7 +131,18 @@ class NetgearRouter {
     let attachDevices = [];
     for(let deviceString of dataSplit) {
       let deviceSplit = deviceString.split(';');
-      attachDevices.push(deviceSplit);
+
+      if (deviceSplit.length === 8) {
+        attachDevices.push({
+          ip_addr: deviceSplit[1],
+          name: deviceSplit[2],
+          mac_addr: deviceSplit[3],
+          connection_type: deviceSplit[4],
+          bandwidth: deviceSplit[5],
+          signal_strength: deviceSplit[6],
+          access_control: deviceSplit[7],
+        });
+      }
     }
 
     return {

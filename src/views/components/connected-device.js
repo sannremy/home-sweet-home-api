@@ -20,14 +20,15 @@ class ConnectedDevice extends BaseComponent {
 
     let devicesList = [];
 
-    this.state.devices.map(module => {
-      return (
-        <div key={module.module_name}>
-          <span>{module.module_name}</span>:
-          <_IndoorMetricCO2 value={module.dashboard_data.CO2} />
-        </div>
-      );
-    });
+    if (this.state.devices && this.state.devices.length) {
+      devicesList = this.state.devices.map(device => {
+        return (
+          <div key={device.mac_addr}>
+            <span>{device.name}</span>
+          </div>
+        );
+      });
+    }
 
     return (
       <div className={classNames.join(' ')}>
