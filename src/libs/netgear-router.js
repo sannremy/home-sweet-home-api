@@ -1,6 +1,7 @@
 // https://github.com/balloob/pynetgear/
 
 const http = require('http');
+const config = require('../configs/home-sweet-home');
 
 class NetgearRouter {
 
@@ -128,25 +129,38 @@ class NetgearRouter {
 
     let dataSplit = dataString.split('@');
     let numberOfDevices = dataSplit[0];
-    let attachDevices = [];
+    let attachedDevices = [];
     for(let deviceString of dataSplit) {
       let deviceSplit = deviceString.split(';');
 
       if (deviceSplit.length === 8) {
-        attachDevices.push({
-          ip_addr: deviceSplit[1],
-          name: deviceSplit[2],
-          mac_addr: deviceSplit[3],
-          connection_type: deviceSplit[4],
-          bandwidth: deviceSplit[5],
-          signal_strength: deviceSplit[6],
-          access_control: deviceSplit[7],
-        });
+        let device = {
+          ip_addr: deviceSplit[1] ? deviceSplit[1] : null,
+          name: deviceSplit[2] ? deviceSplit[2] : null,
+          mac_addr: deviceSplit[3] ? deviceSplit[3] : null,
+          connection_type: deviceSplit[4] ? deviceSplit[4] : null,
+          bandwidth: deviceSplit[5] ? deviceSplit[5] : null,
+          signal_strength: deviceSplit[6] ? deviceSplit[6] : null,
+          access_control: deviceSplit[7] ? deviceSplit[7] : null,
+          reference: null
+        };
+
+        if (device.mac_addr) {
+          let reference = config.netgear.references.find(function(reference) {
+            return reference.mac.toLowerCase() === device.mac_addr.toLowerCase();
+          });
+
+          if (reference) {
+            device.reference = reference;
+          }
+        }
+
+        attachedDevices.push(device);
       }
     }
 
     return {
-      devices: attachDevices
+      devices: attachedDevices
     };
   }
 }

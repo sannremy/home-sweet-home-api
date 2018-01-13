@@ -5,6 +5,7 @@ module.exports = {
   'netgear': {
     'username': process.env.NETGEAR_USERNAME || 'username',
     'password': process.env.NETGEAR_PASSWORD || 'password',
+    'references': JSON.parse(process.env.NETGEAR_REFERENCES)
   },
   'yahooWeather': {
     'key': process.env.YAHOO_WEATHER_API_KEY || '',

@@ -24,7 +24,7 @@ class ConnectedDevice extends BaseComponent {
       devicesList = this.state.devices.map(device => {
         return (
           <div key={device.mac_addr}>
-            <span>{device.name}: {device.ip_addr}</span>
+            <span>{device.reference.label ? device.reference.label : device.name}: {device.ip_addr}</span>
           </div>
         );
       });
