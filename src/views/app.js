@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     return (
       <DefaultLayout title={this.props.title}>
-        <div className="container">
+        <div className="container-fluid">
           <div className="row py-2">
             <div className="col-sm">
               <Weather />

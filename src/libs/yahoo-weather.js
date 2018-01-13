@@ -13,8 +13,14 @@ class YahooWeather {
           return reject(err);
         }
 
+        const location = data.query.results.channel.location;
         const forecast = data.query.results.channel.item.forecast;
         const condition = data.query.results.channel.item.condition;
+
+        // Sat, 13 Jan 2018 04:00 PM CET
+        const date = moment(condition.date, 'ddd, D MMM YYYY HH:mm A z');
+        date.locale(config.locale);
+        condition.date = date;
 
         const sunrise = moment(data.query.results.channel.astronomy.sunrise, 'h:mm a');
         sunrise.locale(config.locale);
@@ -23,6 +29,7 @@ class YahooWeather {
         sunset.locale(config.locale);
 
         return resolve({
+          location: location,
           condition: condition,
           forecast: forecast,
           sunrise: sunrise,

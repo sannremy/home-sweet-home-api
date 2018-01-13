@@ -1,15 +1,11 @@
 const moment = require('moment');
 
 class Mixins {
-  static getLocaleTimeString(dateStr, format) {
-    return dateStr ? moment(dateStr, format).format('LT') : null;
-  }
-
   static getLocaleDateString(dateStr, format) {
-    return dateStr ? moment(dateStr, format).format('LL') : null;
+    return dateStr ? moment(dateStr).format(format) : null;
   }
 
-  static getLocaleCalendarString(dateStr, format) {
+  static getLocaleCalendarString(dateStr, inputFormat) {
     moment.updateLocale('en', {
         calendar : {
             lastDay : '[Yesterday]',
@@ -21,7 +17,7 @@ class Mixins {
         }
     });
 
-    return dateStr ? moment(dateStr, format).calendar() : null;
+    return dateStr ? moment(dateStr, inputFormat).calendar() : null;
   }
 
   static getDurationFromGoogleMaps(durationStr) {

@@ -25,7 +25,7 @@ class WaterLevel extends BaseComponent {
     return (
       <div className={classNames.join(' ')}>
         <div>Level: {this.state.level}</div>
-        <div>Date: {Mixins.getLocaleTimeString(this.state.date)}</div>
+        <div>Date: {Mixins.getLocaleDateString(this.state.date)}</div>
       </div>
     );
   }
