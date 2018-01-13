@@ -24,7 +24,10 @@ class ConnectedDevice extends BaseComponent {
       devicesList = this.state.devices.map(device => {
         return (
           <div key={device.mac_addr}>
-            <span>{device.reference.label ? device.reference.label : device.name}: {device.ip_addr}</span>
+            <div data-toggle="tooltip" data-placement="bottom" title={device.ip_addr}>
+              <_ConnectedDeviceTypeIcon type={device.reference ? device.reference.type : null} />
+              <span>{device.reference ? device.reference.label : "unknown"}</span>
+            </div>
           </div>
         );
       });
@@ -43,3 +46,41 @@ class ConnectedDevice extends BaseComponent {
 }
 
 module.exports = ConnectedDevice;
+
+class _ConnectedDeviceTypeIcon extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let icon = '';
+
+    switch(this.props.type) {
+      case 'pc':
+        icon = 'desktop';
+      break;
+      case 'smartphone':
+        icon = 'mobile';
+      break;
+      case 'tablet':
+        icon = 'tablet';
+      break;
+      case 'console':
+        icon = 'gamepad';
+      break;
+      case 'other':
+        icon = 'microchip';
+      break;
+      case 'guest':
+        icon = 'user';
+      break;
+      default:
+        icon = 'question-circle';
+      break;
+    }
+
+    const classNames = ['fa', 'fa-' + icon, 'connected-device-icon'];
+
+    return <i className={classNames.join(' ')} />;
+  }
+}
