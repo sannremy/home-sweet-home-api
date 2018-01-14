@@ -22,36 +22,40 @@ class Weather extends BaseComponent {
       <div className={classNames.join(' ')}>
         <div className="row">
           <div className="col">
-            <div className="row">
-              <div className="col">
-                {this.state.condition &&
-                  <span>{this.state.condition.text}</span>
-                }
+            <div className="weather-header">
+              <div className="row">
+                <div className="col">
+                  {this.state.condition &&
+                    <span>{this.state.condition.text}</span>
+                  }
+                </div>
+                <div className="col">
+                  {this.state.location &&
+                    <span>{this.state.location.city}</span>
+                  }
+                  {this.state.condition &&
+                    <_WeatherDate date={this.state.condition.date} format="LT" />
+                  }
+                </div>
               </div>
-              <div className="col">
-                {this.state.location &&
-                  <span>{this.state.location.city}</span>
-                }
-                {this.state.condition &&
-                  <_WeatherDate date={this.state.condition.date} format="LT" />
-                }
+              <div className="row">
+                <div className="col">
+                  {this.state.condition &&
+                    <_WeatherIcon code={this.state.condition.code} />
+                  }
+                </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                {this.state.condition &&
-                  <_WeatherIcon code={this.state.condition.code} />
-                }
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                {this.state.sunrise &&
-                  <_WeatherDate date={this.state.sunrise} format="LT" />
-                }
-                {this.state.sunset &&
-                  <_WeatherDate date={this.state.sunset} format="LT" />
-                }
+              <div className="row">
+                <div className="col">
+                  {this.state.sunrise &&
+                    <_WeatherDate date={this.state.sunrise} format="LT" />
+                  }
+                </div>
+                <div className="col">
+                  {this.state.sunset &&
+                    <_WeatherDate date={this.state.sunset} format="LT" />
+                  }
+                </div>
               </div>
             </div>
           </div>
@@ -60,7 +64,18 @@ class Weather extends BaseComponent {
           <div className="col">
             <div className="row no-gutters">
               <div className="col-4">
-                main
+                <div className="row">
+                  <div className="col">
+                    {this.state.condition &&
+                      <_WeatherDate date={this.state.condition.date} format="dddd Do" />
+                    }
+                  </div>
+                  <div className="col">
+                    {this.state.condition &&
+                      <_WeatherIcon code={this.state.condition.code} />
+                    }
+                  </div>
+                </div>
               </div>
               <div className="col">
                 1
