@@ -5,8 +5,36 @@
 .weather-header {
   background: #64b5f6;
   color: #fff;
+
+  &__icon {
+    font-size: 5em;
+    text-align: center;
+    text-shadow: 1px 1px 3px #848484;
+  }
+
+  &__location {
+    text-align: right;
+  }
 }
 
-.weather-condition__temperature {
-  font-size: 1.6em;
+.weather-footer {
+  &__today {
+    text-align: center;
+
+    &__temperature {
+      font-size: 3em;
+    }
+
+    &__date {
+    }
+
+    &__icon {
+      font-size: 3em;
+    }
+  }
+
+  &__forecast {
+    text-align: center;
+    border-left: 1px #ccc solid;
+  }
 }

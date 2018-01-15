@@ -1,8 +1,12 @@
-const moment = require('moment');
+import moment from 'moment';
 
 class Mixins {
+  static moment(arg1, arg2) {
+    return moment(arg1, arg2);
+  }
+
   static getLocaleDateString(dateStr, format) {
-    return dateStr ? moment(dateStr).format(format) : null;
+    return dateStr ? moment(dateStr,).format(format) : '';
   }
 
   static getLocaleCalendarString(dateStr, inputFormat) {
@@ -17,7 +21,7 @@ class Mixins {
         }
     });
 
-    return dateStr ? moment(dateStr, inputFormat).calendar() : null;
+    return dateStr ? moment(dateStr, inputFormat).calendar() : '';
   }
 
   static getDurationFromGoogleMaps(durationStr) {
@@ -25,4 +29,4 @@ class Mixins {
   }
 }
 
-module.exports = Mixins;
+export default Mixins;

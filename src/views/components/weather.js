@@ -29,7 +29,7 @@ class Weather extends BaseComponent {
                     <span>{this.state.condition.text}</span>
                   }
                 </div>
-                <div className="col">
+                <div className="col weather-header__location">
                   {this.state.location &&
                     <span>{this.state.location.city}</span>
                   }
@@ -39,7 +39,7 @@ class Weather extends BaseComponent {
                 </div>
               </div>
               <div className="row">
-                <div className="col">
+                <div className="col weather-header__icon">
                   {this.state.condition &&
                     <_WeatherIcon code={this.state.condition.code} />
                   }
@@ -63,38 +63,7 @@ class Weather extends BaseComponent {
         <div className="row">
           <div className="col">
             <div className="row no-gutters">
-              <div className="col-4">
-                <div className="row">
-                  <div className="col">
-                    {this.state.condition &&
-                      <_WeatherDate date={this.state.condition.date} format="dddd Do" />
-                    }
-                  </div>
-                  <div className="col">
-                    {this.state.condition &&
-                      <_WeatherIcon code={this.state.condition.code} />
-                    }
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                1
-              </div>
-              <div className="col">
-                2
-              </div>
-              <div className="col">
-                3
-              </div>
-              <div className="col">
-                4
-              </div>
-              <div className="col">
-                5
-              </div>
-              <div className="col">
-                6
-              </div>
+              <_WeatherForecast forecast={this.state.forecast} />
             </div>
           </div>
         </div>
@@ -139,7 +108,7 @@ class _WeatherDate extends BaseComponent {
   render() {
     return (
       <div className="weather-date">
-        {Mixins.getLocaleDateString(this.props.date, this.props.format)}
+        {Mixins.moment(this.props.date).format(this.props.format)}
       </div>
     );
   }
@@ -157,7 +126,7 @@ class _WeatherSunrise extends React.Component {
     return (
       <div className="weather-sunrise">
         <i className="wi wi-sunrise" />
-        {Mixins.getLocaleDateString(this.props.date)}
+        {Mixins.moment(this.props.date)}
       </div>
     );
   }
@@ -175,7 +144,7 @@ class _WeatherSunset extends BaseComponent {
     return (
       <div className="weather-sunset">
         <i className="wi wi-sunset" />
-        {Mixins.getLocaleDateString(this.props.date)}
+        {Mixins.moment(this.props.date)}
       </div>
     );
   }
@@ -227,39 +196,57 @@ class _WeatherForecast extends React.Component {
     let daysList = [];
 
     if (this.props.forecast && this.props.forecast.length) {
-      const Utils = require('../../static/scripts/libs/utils');
+      let today = this.props.forecast[0];
+      let forecast = this.props.forecast.slice(1, 7);
 
-      daysList = this.props.forecast.map((day) => {
+      daysList = [(
+        <div className="col-4 weather-footer__today">
+          <div className="row">
+            <div className="col">
+              <div className="weather-footer__today__temperature">
+                {today.high + '°C'}
+              </div>
+              <div className="weather-footer__today__date">
+                {Mixins.moment(today.date, 'DD MMM YYYY').format('LL')}
+              </div>
+            </div>
+            <div className="col">
+              <div className="weather-footer__today__icon">
+                <_WeatherIcon code={today.code} />
+              </div>
+              <div className="weather-footer__today__wind">
+                {today.text}
+              </div>
+            </div>
+          </div>
+        </div>
+      )];
+
+      daysList = daysList.concat(forecast.map((day) => {
         return  (
-          <div className="col" key={day.date}>
-            <div data-toggle="tooltip" data-placement="bottom" title={day.text}>
-              <_WeatherIcon code={day.code} />
+          <div className="col weather-footer__forecast" key={day.date}>
+            <div className="row">
+              <div className="col">
+                {Mixins.getLocaleCalendarString(day.date, 'DD MMM YYYY')}
+              </div>
             </div>
-            <div>
-              {Mixins.getLocaleCalendarString(day.date, 'DD MMM YYYY')}
+            <div className="row">
+              <div className="col" data-toggle="tooltip" data-placement="bottom" title={day.text}>
+                <_WeatherIcon code={day.code} />
+              </div>
             </div>
-            <div>
-              <i className="fa fa-arrow-circle-up" aria-hidden="true" />
-              {day.high + '°C'}
-            </div>
-            <div>
-              <i className="fa fa-arrow-circle-down" aria-hidden="true" />
-              {day.low + '°C'}
+            <div className="row">
+              <div className="col">
+                {day.high + '°C'}
+                {/*day.low + '°C'*/}
+              </div>
             </div>
           </div>
         );
-      });
+      }));
     }
 
-    return (
-      <div className="weather-forecast">
-        {daysList.length > 0 &&
-          <div className="row">
-            {daysList}
-          </div>
-        }
-      </div>
-    );
+    return daysList;
   }
 }
 
