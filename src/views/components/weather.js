@@ -62,9 +62,7 @@ class Weather extends BaseComponent {
         </div>
         <div className="row">
           <div className="col">
-            <div className="row no-gutters">
-              <_WeatherForecast forecast={this.state.forecast} />
-            </div>
+            <_WeatherForecast forecast={this.state.forecast} />
           </div>
         </div>
       </div>
@@ -246,7 +244,11 @@ class _WeatherForecast extends React.Component {
       }));
     }
 
-    return daysList;
+    return (
+      <div className="weather-forecast row no-gutters">
+        {daysList}
+      </div>
+    );
   }
 }
 
