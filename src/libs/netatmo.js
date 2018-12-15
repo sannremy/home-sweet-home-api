@@ -1,5 +1,6 @@
 const querystring = require('querystring');
 const config = require('../configs/home-sweet-home');
+const log = require('./logger');
 const moment = require('moment');
 const axios = require('axios');
 
@@ -14,8 +15,8 @@ class Netatmo {
       'grant_type': 'password',
       'client_id': config.netatmo.clientId,
       'client_secret': config.netatmo.clientSecret,
-      'username': config.netatmo.username,
-      'password': config.netatmo.password,
+      // 'username': config.netatmo.username,
+      // 'password': config.netatmo.password,
       'scope': 'read_station'
     })).then(response => {
       if (response.data && response.data.access_token) {
@@ -24,7 +25,7 @@ class Netatmo {
         throw new Error('No token');
       }
     }).catch(err => {
-      console.log(err);
+      log.error(err);
 
       return null;
     });

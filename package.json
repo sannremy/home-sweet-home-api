@@ -5,39 +5,19 @@
   "author": "Sann-Remy Chea <srchea@srchea.com>",
   "main": "src/server.js",
   "scripts": {
-    "start": "node ./src/app.js",
-    "build": "gulp build",
-    "watch": "gulp watch"
+    "start": "node ./src/server.js",
+    "serve": "nodemon --watch src"
   },
   "dependencies": {
-    "@google/maps": "^0.4.3",
-    "axios": "^0.17.1",
-    "cheerio": "^1.0.0-rc.2",
-    "dotenv": "^4.0.0",
-    "express": "^4.15.3",
-    "express-react-views": "^0.10.4",
-    "gulp": "^3.9.1",
-    "mkdirp": "^0.5.1",
-    "moment": "^2.18.1",
-    "socket.io": "^2.0.4",
-    "weather-icons-sass": "^2.0.10",
-    "wemo-client": "^0.14.0",
+    "@google/maps": "^0.5.5",
+    "axios": "^0.18.0",
+    "dotenv": "^6.1.0",
+    "moment": "^2.22.2",
+    "pino": "^5.9.0",
+    "restify": "^7.2.3",
     "yql": "^1.0.2"
   },
   "devDependencies": {
-    "babel-core": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babelify": "^8.0.0",
-    "bootstrap": "^4.0.0-beta.2",
-    "browserify": "^14.5.0",
-    "del": "^3.0.0",
-    "font-awesome": "^4.7.0",
-    "gulp-nodemon": "^2.2.1",
-    "gulp-sass": "^3.1.0",
-    "jquery": "^3.2.1",
-    "popper.js": "^1.12.9",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "nodemon": "^1.18.7"
   }
 }

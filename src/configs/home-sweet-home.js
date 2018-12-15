@@ -1,26 +1,26 @@
 'use strict';
 
 module.exports = {
-  'locale': process.env.LOCALE || 'en',
+  'locale': process.env.LOCALE,
   'netgear': {
-    'username': process.env.NETGEAR_USERNAME || 'username',
-    'password': process.env.NETGEAR_PASSWORD || 'password',
+    'username': process.env.NETGEAR_USERNAME,
+    'password': process.env.NETGEAR_PASSWORD,
     'references': JSON.parse(process.env.NETGEAR_REFERENCES)
   },
   'yahooWeather': {
-    'key': process.env.YAHOO_WEATHER_API_KEY || '',
-    'secret': process.env.YAHOO_WEATHER_API_SECRET || '',
+    'key': process.env.YAHOO_WEATHER_API_KEY,
+    'secret': process.env.YAHOO_WEATHER_API_SECRET,
 
-    'location': process.env.YAHOO_WEATHER_LOCATION || 'Paris, FR',
-    'temperature_unit': process.env.YAHOO_WEATHER_TEMPERATURE_UNIT || 'celsius',
+    'location': process.env.YAHOO_WEATHER_LOCATION,
+    'temperature_unit': process.env.YAHOO_WEATHER_TEMPERATURE_UNIT,
   },
   'googleMaps': {
-    'key': process.env.GOOGLE_MAPS_API_KEY || '',
+    'key': process.env.GOOGLE_MAPS_API_KEY,
     'directions': JSON.parse(process.env.GOOGLE_MAPS_DIRECTIONS)
   },
   'vigicrue': {
-    levelUrl: process.env.VIGICRUE_LEVEL_URL || '',
-    attentionUrl: process.env.VIGICRUE_ATTENTION_URL || ''
+    levelUrl: process.env.VIGICRUE_LEVEL_URL,
+    attentionUrl: process.env.VIGICRUE_ATTENTION_URL
   },
   'netatmo': {
     'clientId': process.env.NETATMO_CLIENT_ID,
