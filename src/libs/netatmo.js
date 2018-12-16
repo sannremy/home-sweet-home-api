@@ -1,6 +1,5 @@
 const querystring = require('querystring');
-const config = require('../configs/home-sweet-home');
-const log = require('./logger');
+const config = require('config');
 const moment = require('moment');
 const axios = require('axios');
 
@@ -25,9 +24,7 @@ class Netatmo {
         throw new Error('No token');
       }
     }).catch(err => {
-      log.error(err);
-
-      return null;
+      throw err;
     });
   }
 

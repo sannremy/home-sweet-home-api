@@ -1,5 +1,5 @@
 const moment = require('moment');
-const config = require('../configs/home-sweet-home');
+const config = require('config');
 const GoogleMapsApi = require('@google/maps');
 
 // Create client with a Promise constructor

@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('../configs/home-sweet-home');
+const config = require('config');
 
 // Libs
 const YahooWeather = require('../libs/yahoo-weather');

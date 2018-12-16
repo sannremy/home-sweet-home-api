@@ -1,4 +1,4 @@
-const config = require('../configs/home-sweet-home');
+const config = require('config');
 
 const YQL = require('yql');
 const moment = require('moment');

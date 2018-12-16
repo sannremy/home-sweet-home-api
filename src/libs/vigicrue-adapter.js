@@ -1,11 +1,12 @@
-const config = require('../configs/home-sweet-home');
-
+const config = require('config');
 const axios = require('axios');
+
+const Vigicrue = require('../models/Vigicrue');
 
 class VigicrueAdapter {
   static async getCurrent() {
-    const info = await Vigicrue.getCurrentLevel();
-    const color = await Vigicrue.getAttentionColor();
+    const info = await VigicrueAdapter.getCurrentLevel();
+    const color = await VigicrueAdapter.getAttentionColor();
 
     return new Vigicrue(info.date, info.level, color);
   }
@@ -20,7 +21,7 @@ class VigicrueAdapter {
           date: new Date(lastData[0]),
           level: lastData[1]
         };
-      });
+    });
   }
 
   static async getAttentionColor() {
@@ -44,7 +45,6 @@ class VigicrueAdapter {
         }
 
         return color;
-      });
     });
   }
 }

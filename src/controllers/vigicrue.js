@@ -1,12 +1,14 @@
 'use strict';
 
 // Libs
-const Vigicrue = require('../libs/vigicrue');
+const Vigicrue = require('../libs/vigicrue-adapter');
 
 class VigicrueController {
-  static async get(req, res, next) {
-    let data = await Vigicrue.getWaterLevel();
-    res.json(data);
+  static async indexHandler(req, res, next) {
+    let vigicrue = await Vigicrue.getCurrent();
+    res.json(vigicrue);
+
+    return next();
   }
 }
 

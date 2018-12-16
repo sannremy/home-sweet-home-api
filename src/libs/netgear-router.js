@@ -1,7 +1,7 @@
 // https://github.com/balloob/pynetgear/
 
 const http = require('http');
-const config = require('../configs/home-sweet-home');
+const config = require('config');
 
 class NetgearRouter {
 
@@ -15,29 +15,32 @@ class NetgearRouter {
 
     this.envelope = {
       login:
-          '<?xml version="1.0" encoding="utf-8" ?>'
-        + '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">'
-        + '<SOAP-ENV:Header>'
-        + '<SessionID xsi:type="xsd:string" xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance">{sessionId}</SessionID>'
-        + '</SOAP-ENV:Header>'
-        + '<SOAP-ENV:Body>'
-        + '<Authenticate>'
-        + '<NewUsername>{username}</NewUsername>'
-        + '<NewPassword>{password}</NewPassword>'
-        + '</Authenticate>'
-        + '</SOAP-ENV:Body>'
-        + '</SOAP-ENV:Envelope>',
+        `
+          <?xml version="1.0" encoding="utf-8" ?>
+          <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+            <SOAP-ENV:Header>
+              <SessionID xsi:type="xsd:string" xmlns:xsi="http://www.w3.org/1999/XMLSchema-instance">{sessionId}</SessionID>
+            </SOAP-ENV:Header>
+            <SOAP-ENV:Body>
+              <Authenticate>
+                <NewUsername>{username}</NewUsername>
+                <NewPassword>{password}</NewPassword>
+              </Authenticate>
+            </SOAP-ENV:Body>
+          </SOAP-ENV:Envelope>
+        `,
       getAttachedDevices:
-          '<?xml version="1.0" encoding="utf-8" standalone="no"?>'
-        + '<SOAP-ENV:Envelope xmlns:SOAPSDK1="http://www.w3.org/2001/XMLSchema" xmlns:SOAPSDK2="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAPSDK3="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">'
-        + '<SOAP-ENV:Header>'
-        + '<SessionID>{sessionId}</SessionID>'
-        + '</SOAP-ENV:Header>'
-        + '<SOAP-ENV:Body>'
-        + '<M1:GetAttachDevice xmlns:M1="urn:NETGEAR-ROUTER:service:DeviceInfo:1">'
-        + '</M1:GetAttachDevice>'
-        + '</SOAP-ENV:Body>'
-        + '</SOAP-ENV:Envelope>'
+        `
+          <?xml version="1.0" encoding="utf-8" standalone="no"?>
+          <SOAP-ENV:Envelope xmlns:SOAPSDK1="http://www.w3.org/2001/XMLSchema" xmlns:SOAPSDK2="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAPSDK3="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+            <SOAP-ENV:Header>
+              <SessionID>{sessionId}</SessionID>
+            </SOAP-ENV:Header>
+            <SOAP-ENV:Body>
+              <M1:GetAttachDevice xmlns:M1="urn:NETGEAR-ROUTER:service:DeviceInfo:1"></M1:GetAttachDevice>
+            </SOAP-ENV:Body>
+          </SOAP-ENV:Envelope>
+        `
     };
   }
 

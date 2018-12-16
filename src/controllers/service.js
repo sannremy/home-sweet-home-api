@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('../configs/home-sweet-home');
+const config = require('config');
 
 // Libs
 const YahooWeather = require('../libs/yahoo-weather');
@@ -40,10 +40,10 @@ class ServiceController {
     res.json(data);
   }
 
-  static async getWaterLevel(req, res, next) {
-    let data = await Vigicrue.getWaterLevel();
-    res.json(data);
-  }
+  // static async getWaterLevel(req, res, next) {
+  //   let data = await Vigicrue.getWaterLevel();
+  //   res.json(data);
+  // }
 
   static async getIndoorMetrics(req, res, next) {
     let data = await netatmo.getIndoorMetrics();
