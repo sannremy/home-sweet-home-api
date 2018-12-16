@@ -35,10 +35,10 @@ class ServiceController {
     res.json(data);
   }
 
-  static async getWeather(req, res, next) {
-    let data = await YahooWeather.getWeather();
-    res.json(data);
-  }
+  // static async getWeather(req, res, next) {
+  //   let data = await YahooWeather.getWeather();
+  //   res.json(data);
+  // }
 
   // static async getWaterLevel(req, res, next) {
   //   let data = await Vigicrue.getWaterLevel();

@@ -11,11 +11,13 @@ server.use(restify.plugins.acceptParser(server.acceptable));
 
 
 const asyncController = require('./libs/async-controller');
+
 const VigicrueController = require('./controllers/vigicrue');
+const WeatherController = require('./controllers/weather');
 
 server.get('/vigicrue', asyncController(VigicrueController.indexHandler));
+server.get('/weather', asyncController(WeatherController.indexHandler));
 
-// router.get('/weather', asyncController(ServiceController.getWeather));
 // router.get('/traffic', asyncController(ServiceController.getTraffic));
 // router.get('/connected_devices', asyncController(ServiceController.getConnectedDevices));
 // router.get('/water_level', asyncController(ServiceController.getWaterLevel));

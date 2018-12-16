@@ -1,14 +1,16 @@
 const config = require('config');
 const axios = require('axios');
 
-const Vigicrue = require('../models/Vigicrue');
-
 class VigicrueAdapter {
   static async getCurrent() {
     const info = await VigicrueAdapter.getCurrentLevel();
     const color = await VigicrueAdapter.getAttentionColor();
 
-    return new Vigicrue(info.date, info.level, color);
+    return {
+      date: info.date,
+      level: info.level,
+      color: color
+    };
   }
 
   static async getCurrentLevel() {
