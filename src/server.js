@@ -14,9 +14,11 @@ const asyncController = require('./libs/async-controller');
 
 const VigicrueController = require('./controllers/vigicrue');
 const WeatherController = require('./controllers/weather');
+const NetatmoController = require('./controllers/netatmo');
 
 server.get('/vigicrue', asyncController(VigicrueController.indexHandler));
 server.get('/weather', asyncController(WeatherController.indexHandler));
+server.get('/netatmo', asyncController(NetatmoController.indexHandler));
 
 // router.get('/traffic', asyncController(ServiceController.getTraffic));
 // router.get('/connected_devices', asyncController(ServiceController.getConnectedDevices));

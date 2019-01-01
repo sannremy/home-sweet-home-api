@@ -1,14 +1,14 @@
 'use strict';
 
 // Libs
-const VigicrueAdapter = require('../libs/vigicrue-adapter');
+const VigicrueData = require('../libs/vigicrue-data');
 
 // Model
 const Vigicrue = require('../models/vigicrue');
 
 class VigicrueController {
   static async indexHandler(req, res, next) {
-    let current = await VigicrueAdapter.getCurrent();
+    let current = await VigicrueData.getCurrent();
     let vigicrue = new Vigicrue(current.date, current.level, current.color);
 
     res.json(vigicrue);
