@@ -10,6 +10,8 @@ class NetatmoController {
   static async indexHandler(req, res, next) {
     let data = await netatmo.getIndoorMetrics();
     res.json(data);
+
+    return next();
   }
 }
 

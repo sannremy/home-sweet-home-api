@@ -15,15 +15,14 @@ const asyncController = require('./libs/async-controller');
 const VigicrueController = require('./controllers/vigicrue');
 const WeatherController = require('./controllers/weather');
 const NetatmoController = require('./controllers/netatmo');
+const TrafficController = require('./controllers/traffic');
+const NetworkController = require('./controllers/network');
 
 server.get('/vigicrue', asyncController(VigicrueController.indexHandler));
 server.get('/weather', asyncController(WeatherController.indexHandler));
 server.get('/netatmo', asyncController(NetatmoController.indexHandler));
-
-// router.get('/traffic', asyncController(ServiceController.getTraffic));
-// router.get('/connected_devices', asyncController(ServiceController.getConnectedDevices));
-// router.get('/water_level', asyncController(ServiceController.getWaterLevel));
-// router.get('/indoor_metrics', asyncController(ServiceController.getIndoorMetrics));
+server.get('/traffic', asyncController(TrafficController.indexHandler));
+server.get('/network', asyncController(NetworkController.indexHandler));
 
 server.listen(8080, () => {
   console.log('%s listening at %s', server.name, server.url);

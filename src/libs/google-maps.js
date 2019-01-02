@@ -15,14 +15,12 @@ class GoogleMaps {
       let duration = await googleMapsClient.distanceMatrix({
         origins: [direction.origin],
         destinations: [direction.destination],
-        departure_time: (new Date()).getTime(),
+        departure_time: (new Date()).getTime() + 1000 * 60 * 5,
         mode: 'driving',
         avoid: ['tolls'],
-        traffic_model: 'best_guess'
+        traffic_model: 'optimistic'
       }).asPromise().then((response) => {
-        let directionDuration = moment.duration(response.json.rows[0].elements[0].duration.value, 'seconds');
-        directionDuration.locale(config.locale);
-
+        let directionDuration = response.json.rows[0].elements[0].duration.value; // in second
         let directionDistance = response.json.rows[0].elements[0].distance.value; // in meter
 
         return {
@@ -31,6 +29,8 @@ class GoogleMaps {
           distance: directionDistance
         };
       }).catch((err) => {
+        console.error(err);
+
         if (err === 'timeout') {
           // Handle timeout.
         } else if (err.json) {
