@@ -7,12 +7,10 @@ module.exports = {
     password: process.env.NETGEAR_PASSWORD,
     references: JSON.parse(process.env.NETGEAR_REFERENCES)
   },
-  yahooWeather: {
-    key: process.env.YAHOO_WEATHER_API_KEY,
-    secret: process.env.YAHOO_WEATHER_API_SECRET,
-
-    location: process.env.YAHOO_WEATHER_LOCATION,
-    temperature_unit: process.env.YAHOO_WEATHER_TEMPERATURE_UNIT,
+  openWeatherMap: {
+    apiUrl: process.env.OPEN_WEATHER_MAP_API_URL,
+    apiKey: process.env.OPEN_WEATHER_MAP_API_KEY,
+    city: process.env.OPEN_WEATHER_MAP_CITY,
   },
   googleMaps: {
     key: process.env.GOOGLE_MAPS_API_KEY,

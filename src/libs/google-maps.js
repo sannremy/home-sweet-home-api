@@ -17,10 +17,9 @@ class GoogleMaps {
         destinations: [direction.destination],
         departure_time: (new Date()).getTime() + 1000 * 60 * 5,
         mode: 'driving',
-        avoid: ['tolls'],
-        traffic_model: 'optimistic'
+        avoid: ['tolls']
       }).asPromise().then((response) => {
-        let directionDuration = response.json.rows[0].elements[0].duration.value; // in second
+        let directionDuration = response.json.rows[0].elements[0].duration_in_traffic.value; // in second
         let directionDistance = response.json.rows[0].elements[0].distance.value; // in meter
 
         return {
