@@ -10,7 +10,7 @@ class OpenWeatherMap {
         params: {
           q: config.openWeatherMap.city,
           units: 'metric',
-          cnt: 7,
+          cnt: 5,
           appid: config.openWeatherMap.apiKey,
         }
       });
