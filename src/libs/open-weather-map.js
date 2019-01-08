@@ -4,9 +4,9 @@ const axios = require('axios');
 const moment = require('moment');
 
 class OpenWeatherMap {
-  static async getWeather() {
+  static async getWeather(endpoint) {
     try {
-      let response = await axios.get(config.openWeatherMap.apiUrl, {
+      let response = await axios.get(config.openWeatherMap.apiUrl + endpoint, {
         params: {
           q: config.openWeatherMap.city,
           units: 'metric',

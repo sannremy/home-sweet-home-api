@@ -8,9 +8,13 @@ const Weather = require('../models/weather');
 
 class WeatherController {
   static async indexHandler(req, res, next) {
-    let openWeatherMapData = await openWeatherMap.getWeather();
+    let openWeatherMapForecastData = await openWeatherMap.getWeather('/forecast/daily');
+    let openWeatherMapCurrentData = await openWeatherMap.getWeather('/weather');
 
-    res.json(openWeatherMapData);
+    res.json({
+      current: openWeatherMapCurrentData,
+      forecast: openWeatherMapForecastData
+    });
 
     return next();
   }
