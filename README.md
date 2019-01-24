@@ -1,4 +1,4 @@
-# 🏡 Home Sweet Home - API
+# Home Sweet Home - API
 
 API of smart home devices.
 
