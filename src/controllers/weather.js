@@ -4,7 +4,7 @@
 const openWeatherMap = require('../libs/open-weather-map');
 
 // Model
-const Weather = require('../models/weather');
+const Weather = require('../models/Weather');
 
 class WeatherController {
   static async indexHandler(req, res, next) {

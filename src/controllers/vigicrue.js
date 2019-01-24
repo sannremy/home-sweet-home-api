@@ -4,7 +4,7 @@
 const VigicrueData = require('../libs/vigicrue-data');
 
 // Model
-const Vigicrue = require('../models/vigicrue');
+const Vigicrue = require('../models/Vigicrue');
 
 class VigicrueController {
   static async indexHandler(req, res, next) {

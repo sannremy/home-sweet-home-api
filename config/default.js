@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 module.exports = {
-  locale: process.env.LOCALE,
   netgear: {
     username: process.env.NETGEAR_USERNAME,
     password: process.env.NETGEAR_PASSWORD,
