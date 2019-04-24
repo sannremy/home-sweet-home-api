@@ -9,7 +9,7 @@ const Vigicrue = require('../models/Vigicrue');
 class VigicrueController {
   static async indexHandler(req, res, next) {
     let current = await VigicrueData.getCurrent();
-    let vigicrue = new Vigicrue(current.date, current.level, current.color);
+    let vigicrue = new Vigicrue(current.name, current.date, current.level, current.color);
 
     res.json(vigicrue);
 

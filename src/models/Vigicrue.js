@@ -1,5 +1,6 @@
 class Vigicrue {
-  constructor(date, level, color) {
+  constructor(name, date, level, color) {
+    this.name = name;
     this.date = date;
     this.level = level;
     this.color = color;

@@ -8,6 +8,7 @@ class VigicrueData {
       const color = await VigicrueData.getAttentionColor();
 
       return {
+        name: info.name,
         date: info.date,
         level: info.level,
         color: color
@@ -22,10 +23,20 @@ class VigicrueData {
     try {
       let response = await axios.get(config.vigicrue.levelUrl);
 
-      const data = response.data;
+      // Get level and date
+      let data = response.data;
       const lastData = data.Serie.ObssHydro[data.Serie.ObssHydro.length - 1];
 
+      // Get river name
+      let name = null;
+      if (data.Serie.Link) {
+        response = await axios.get(data.Serie.Link);
+        data = response.data;
+        name = data.LbCoursEau;
+      }
+
       return {
+        name: name,
         date: new Date(lastData[0]),
         level: lastData[1]
       };
