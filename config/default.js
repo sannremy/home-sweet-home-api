@@ -25,5 +25,9 @@ module.exports = {
     clientSecret: process.env.NETATMO_CLIENT_SECRET,
     username: process.env.NETATMO_USERNAME,
     password: process.env.NETATMO_PASSWORD,
+  },
+  transilien: {
+    apiUrl: process.env.TRANSILIEN_API_URL,
+    nextDepartureParams: JSON.parse(process.env.TRANSILIEN_NEXT_DEPARTURES_PARAMS)
   }
 };
