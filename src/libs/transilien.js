@@ -24,9 +24,11 @@ class Transilien {
           const train = data.nextTrainsList[i];
           nextTrains.push({
             codeMission: train.codeMission,
-            hasTraficDisruption: train.hasTraficDisruption,
-            hasTravauxDisruption: train.hasTravauxDisruption,
+            hasTrafficDisruption: train.hasTraficDisruption,
+            hasWorkDisruption: train.hasTravauxDisruption,
             departureTime: train.departureTime,
+            delayed: train.delayed,
+            cancelled: train.canceled,
             destination: train.destinationMission,
           });
         }
