@@ -7,19 +7,19 @@ API of smart home devices.
 docker-compose up
 ```
 
-## Run with yarn
+## Run with npm
 
 ### Install depedencies
 ```
-yarn install
+npm install
 ```
 
 ### Watch + Serve on http://localhost:8080
 ```
-yarn run serve
+npm run serve
 ```
 
 ### Start
 ```
-yarn start
+npm start
 ```
