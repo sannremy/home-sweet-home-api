@@ -27,7 +27,7 @@ This will create a HTTP service on port [8080](http://localhost:8080).
 docker-compose up --build
 ```
 
-#### Production: Run with npm
+### Production: Run with npm
 ```bash
 npm start
 ```
