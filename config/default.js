@@ -29,5 +29,9 @@ module.exports = {
   transilien: {
     apiUrl: process.env.TRANSILIEN_API_URL,
     nextDepartureParams: JSON.parse(process.env.TRANSILIEN_NEXT_DEPARTURES_PARAMS)
-  }
+  },
+  tuya: {
+    clientId: process.env.TUYA_CLIENT_ID,
+    clientSecret: process.env.TUYA_CLIENT_SECRET,
+  },
 };
