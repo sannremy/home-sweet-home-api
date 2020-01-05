@@ -47,7 +47,7 @@ class Netatmo {
         'client_secret': config.netatmo.clientSecret,
         'username': config.netatmo.username,
         'password': config.netatmo.password,
-        'scope': 'read_station'
+        'scope': 'read_station read_thermostat write_thermostat'
       }))
 
       if (response.data && response.data.access_token) {
@@ -95,7 +95,7 @@ class Netatmo {
 
       let response = await axios.post(this.api + '/api/getstationsdata', {
         access_token: this.access_token
-      })
+      });
 
       let mainModules = [];
       let additionalModules = [];
@@ -138,6 +138,40 @@ class Netatmo {
       console.error(err);
       return null;
     }
+  }
+
+  async changeSchedule(scheduleName) {
+    try {
+      await this.checkToken();
+
+      let response = await axios.get(this.api + '/api/homesdata', {
+        headers: {
+          Authorization: 'Bearer ' + this.access_token
+        }
+      });
+
+      // Home
+      const home = response.data.body.homes[0];
+
+      // Get schedule
+      const schedule = home.therm_schedules.find(schedule => {
+        return schedule.name.toLowerCase() === scheduleName.toLowerCase();
+      });
+
+      if (schedule) {
+        response = await axios.get(this.api + '/api/switchhomeschedule?schedule_id=' + schedule.id + '&home_id=' + home.id, {
+          headers: {
+            Authorization: 'Bearer ' + this.access_token
+          }
+        });
+
+        return response.data.status === 'ok';
+      }
+    } catch (err) {
+      console.error(err.response.data);
+    }
+
+    return false;
   }
 }
 
