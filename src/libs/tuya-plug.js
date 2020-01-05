@@ -9,10 +9,44 @@ const tuyaApi = new TuyaWebAPI(
 
 class TuyaPlug {
   static async getDevices() {
-    await tuyaApi.getOrRefreshToken();
-    const devices = await tuyaApi.discoverDevices();
+    try {
+      if (!tuyaApi.session.hasValidToken()) {
+        await tuyaApi.getOrRefreshToken();
+      }
 
-    console.log(devices);
+      const devices = await tuyaApi.discoverDevices();
+      return devices;
+    } catch (err) {
+      console.error(err);
+    }
+
+    return [];
+  }
+
+  static async switchPlug(name, enable) {
+    try {
+      const devices = await TuyaPlug.getDevices();
+
+      const plug = devices.find(device => {
+        return device.name.toLowerCase() === name.toLowerCase();
+      });
+
+      if (plug) {
+        const payload = {
+          value: enable ? 1 : 0
+        };
+
+        await tuyaApi.setDeviceState(plug.id, 'turnOnOff', payload);
+
+        plug.data.state = payload.state;
+
+        return plug;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+    return null;
   }
 }
 

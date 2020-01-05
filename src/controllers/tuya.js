@@ -8,7 +8,20 @@ class TuyaController {
     let devices = await tuyaPlug.getDevices();
 
     res.json({
-      devices: devices
+      devices
+    });
+
+    return next();
+  }
+
+  static async switchHandler(req, res, next) {
+    const name = req.params.name;
+    const enable = !!parseInt(req.params.enable);
+
+    const plug = await tuyaPlug.switchPlug(name, enable);
+
+    res.json({
+      plug
     });
 
     return next();

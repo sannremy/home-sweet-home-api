@@ -26,6 +26,7 @@ server.get('/traffic', asyncController(TrafficController.indexHandler));
 server.get('/network', asyncController(NetworkController.indexHandler));
 server.get('/trains', asyncController(TrainsController.indexHandler));
 server.get('/tuya', asyncController(TuyaController.indexHandler));
+server.get('/tuya/switch/:name/:enable', asyncController(TuyaController.switchHandler));
 
 server.listen(8080, () => {
   console.log('%s listening at %s', server.name, server.url);
