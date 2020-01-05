@@ -31,7 +31,8 @@ module.exports = {
     nextDepartureParams: JSON.parse(process.env.TRANSILIEN_NEXT_DEPARTURES_PARAMS)
   },
   tuya: {
-    clientId: process.env.TUYA_CLIENT_ID,
-    clientSecret: process.env.TUYA_CLIENT_SECRET,
+    username: process.env.TUYA_USERNAME,
+    password: process.env.TUYA_PASSWORD,
+    countryCode: process.env.TUYA_COUNTRY_CODE,
   },
 };
