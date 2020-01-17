@@ -7,6 +7,10 @@ class VigicrueData {
       const info = await VigicrueData.getCurrentLevel();
       const color = await VigicrueData.getAttentionColor();
 
+      if (!info) {
+        return null;
+      }
+
       return {
         name: info.name,
         date: info.date,
