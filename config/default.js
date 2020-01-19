@@ -35,4 +35,7 @@ module.exports = {
     password: process.env.TUYA_PASSWORD,
     countryCode: process.env.TUYA_COUNTRY_CODE,
   },
+  control: {
+    modes: JSON.parse(process.env.CONTROL_MODES),
+  }
 };

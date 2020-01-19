@@ -18,6 +18,7 @@ const TrafficController = require('./controllers/traffic');
 const NetworkController = require('./controllers/network');
 const TrainsController = require('./controllers/trains');
 const TuyaController = require('./controllers/tuya');
+const ControlController = require('./controllers/control');
 
 server.get('/vigicrue', asyncController(VigicrueController.indexHandler));
 server.get('/weather', asyncController(WeatherController.indexHandler));
@@ -26,8 +27,10 @@ server.get('/traffic', asyncController(TrafficController.indexHandler));
 server.get('/network', asyncController(NetworkController.indexHandler));
 server.get('/trains', asyncController(TrainsController.indexHandler));
 server.get('/tuya', asyncController(TuyaController.indexHandler));
+server.get('/control', asyncController(ControlController.indexHandler));
 
 // Actions
+server.get('/control/:mode', asyncController(ControlController.startModeHandler));
 server.get('/tuya/switch/:name/:enable', asyncController(TuyaController.switchHandler));
 server.get('/netatmo/energy/schedule/change/:name', asyncController(NetatmoController.changeScheduleHandler));
 
