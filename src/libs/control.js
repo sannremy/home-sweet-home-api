@@ -10,15 +10,19 @@ class Control {
     }
   }
 
-  static startMode(name) {
+  static async startMode(host, name) {
     if (!config.control.modes[name]) {
       return null;
     }
 
     const mode = config.control.modes[name];
-    for (let i = 0; i < mode.urls.length; i++) {
-      console.log('GET ', mode.urls[i]);
-      // axios.get(mode.urls[i]);
+
+    try {
+      for (let i = 0; i < mode.urls.length; i++) {
+        await axios.get(`http://${host}${mode.urls[i]}`);
+      }
+    } catch (err) {
+      console.error(err);
     }
 
     return mode;

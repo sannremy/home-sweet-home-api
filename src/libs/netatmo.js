@@ -30,7 +30,7 @@ class Netatmo {
 
   async getToken() {
     let token = null;
-    if (this.token_expires_at === null) {
+    if (this.token_expires_at === null || this.token_expires_at <= new Date()) {
       token = await this.getAccessToken();
     } else {
       token = await this.getRefreshToken();

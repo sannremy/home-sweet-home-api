@@ -16,9 +16,10 @@ class ControlController {
 
   static startModeHandler(req, res, next) {
     let mode = req.params.mode;
+    const host = req.header('Host');
 
     if (Object.keys(Control.getModes()).includes(mode)) {
-      mode = Control.startMode(mode);
+      mode = Control.startMode(host, mode);
     }
 
     res.json({
