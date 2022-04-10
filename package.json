@@ -14,7 +14,7 @@
     "config": "^3.0.0",
     "dotenv": "^6.2.0",
     "homebridge-tuya-web": "^0.1.7",
-    "moment": "^2.22.2",
+    "moment": "^2.29.2",
     "restify": "^8.4.0"
   },
   "devDependencies": {
