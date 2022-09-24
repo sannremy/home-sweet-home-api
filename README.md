@@ -7,11 +7,11 @@ Home Sweet Home - API is a Node app for managing personal smart home devices.
 Use `git` to download the source code.
 
 ```bash
-git clone git@github.com:srchea/home-sweet-home-api.git
+git clone git@github.com:sannremy/home-sweet-home-api.git
 ```
 
 ### Configuration
-Copy [`.env.sample`](https://github.com/srchea/home-sweet-home-api/blob/master/.env.sample) to `.env`.
+Copy [`.env.sample`](https://github.com/sannremy/home-sweet-home-api/blob/master/.env.sample) to `.env`.
 ```bash
 cp .env.sample .env
 ```
@@ -56,4 +56,4 @@ npm run serve
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
-[MIT](https://github.com/srchea/home-sweet-home-api/blob/master/LICENSE)
+[MIT](https://github.com/sannremy/home-sweet-home-api/blob/master/LICENSE)
