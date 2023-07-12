@@ -13,7 +13,7 @@
     "axios": "^0.21.2",
     "config": "^3.3.8",
     "dotenv": "^6.2.0",
-    "homebridge-tuya-web": "^0.1.7",
+    "homebridge-tuya-web": "^0.3.3",
     "moment": "^2.29.4",
     "restify": "^8.4.0"
   },
