@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@google/maps": "^0.5.5",
-    "axios": "^1.6.0",
+    "axios": "^1.7.4",
     "config": "^3.3.8",
     "dotenv": "^6.2.0",
     "homebridge-tuya-web": "^0.3.3",
